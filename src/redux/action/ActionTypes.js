@@ -1,0 +1,15 @@
+export const ACTION="ACTION";
+
+export const LOG_IN = "LOG_IN";
+export const LOG_IN_REQUEST = "LOG_IN_REQUEST";
+export const LOG_INOUT_QUERY = "LOG_INOUT_QUERY";
+export const LOGGED_IN_SUCCESS = "LOGGED_IN_SUCCESS";
+export const LOGGED_IN_FAILURE = "LOGGED_IN_FAILURE";
+
+export const LOG_OUT = "LOG_OUT";
+export const LOGGED_OUT_SUCCESS = "LOGGED_OUT_SUCCESS";
+export const LOGGED_OUT_FAILURE = "LOGGED_OUT_FAILURE";
+
+export const NAV_SET_FUNCTION = "NAV_SET_FUNCTION";
+export const NAV_CLEAR_FUNCTION = "NAV_CLEAR_FUNCTION";
+export const NAV_SET_VISIBLE = "NAV_SET_VISIBLE";
