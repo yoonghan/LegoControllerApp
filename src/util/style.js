@@ -11,6 +11,12 @@ export const APPBAR = {
 
 export const styles = StyleSheet.create({
   releaseContainer: {
-    fontSize: 8
+    fontSize: 12
+  },
+  horizontalLine: {
+    borderBottomColor: 'black',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    width: '100%',
+    margin: 10
   }
 });

@@ -11,12 +11,12 @@ import Introduction from "../Introduction";
 const Introduction_StackNavigation = createStackNavigator(CreateScreen(Introduction, "Introduction"));
 
 const NavigationScreens = {
-  Settings: {
-    screen: Setting_StackNavigation
-  },
   Introduction: {
     screen: Introduction_StackNavigation
   },
+  Settings: {
+    screen: Setting_StackNavigation
+  }
 };
 
 export default NavigationScreens;
