@@ -7,22 +7,26 @@ import {
   Text,
   TouchableOpacity
 } from 'react-native';
-
 import {connect} from "react-redux";
 import {compose} from "redux";
-
 import * as LoginAction from "../redux/action/LoginAction";
 import {getImageSource} from "../util/source";
 import LegoButton from "../component/LegoButton";
+import BiometricAccess from "../native/android/BiometricAccess";
 
-_buttonPressLogin = ({login}) => () => {
-  login(
-     "Anonymous",
-     "101001010101",
-  );
+_buttonPressLogin = ({login}) => async () => {
+  const result = await BiometricAccess.showBiometricPrompt({});
+  if(result && result.success) {
+    login(
+       "Anonymous",
+       "101001010101",
+    );
+  };
 }
 
 const NonAuth: () => React$Node = (props) => {
+  BiometricAccess.getAvailableAuthenticationMethods();
+
   return (
     <SafeAreaView style={styles.mainContainer}>
       <ImageBackground

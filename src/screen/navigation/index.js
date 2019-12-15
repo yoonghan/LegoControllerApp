@@ -10,12 +10,25 @@ const Setting_StackNavigation = createStackNavigator(CreateScreen(Setting, "Sett
 import Introduction from "../Introduction";
 const Introduction_StackNavigation = createStackNavigator(CreateScreen(Introduction, "Introduction"));
 
+//Lego NavigationBar
+import LegoController from "../LegoController";
+const LegoController_StackNavigation = createStackNavigator(CreateScreen(LegoController, "LegoController"));
+
+//Logout Navigation
+import Logout from "../Logout";
+
 const NavigationScreens = {
   Introduction: {
     screen: Introduction_StackNavigation
   },
+  LegoController: {
+    screen: LegoController_StackNavigation
+  },
   Settings: {
     screen: Setting_StackNavigation
+  },
+  Logout: {
+    screen: Logout
   }
 };
 

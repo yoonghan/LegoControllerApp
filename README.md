@@ -14,3 +14,7 @@ Run
   react-native run-android
   react-native run-ios
 ```
+
+## Know issues
+1. If Android emulator shows a problem loaded with incompatible v6.X Native vs v6.X, delete node_modules folder and restart.
+2. If Android emulator leave a blank screen, start react-native start before deploying the android app.
