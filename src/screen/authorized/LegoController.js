@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from 'react';
+import { compose } from 'redux'
 import { Text } from 'react-native';
 import produce from "immer";
-import withMessenger, {STATUS} from "../hoc/withMessenger";
+import withConnectionDeterminator from "../../hoc/withConnectionDeterminator";
+import withMessenger, {STATUS} from "../../hoc/withMessenger";
 import { GiftedChat } from 'react-native-gifted-chat';
 
 class LegoController extends React.PureComponent {
@@ -39,11 +41,16 @@ class LegoController extends React.PureComponent {
 
   _updateSentMessage = (message) => {
     const {send} = this.props.messenger;
-    const nextState = produce(this.state, draftState => {
-       draftState.messages = GiftedChat.append(this.state.messages, message);
-       send(message[0].text);
-    });
-    this.setState(nextState);
+    if(send(message[0].text)) {
+      const nextState = produce(this.state, draftState => {
+          draftState.messages = GiftedChat.append(this.state.messages, message);
+      });
+      this.setState(nextState);
+    }
+    else {
+      this._updateMessage("Message sent failed!", true);
+      return;
+    }
   }
 
   _updateMessage = (message, isSystemMessage) => {
@@ -73,10 +80,13 @@ class LegoController extends React.PureComponent {
           }
         };
       }
+
+      console.log("DONE");
       const updatedMessages = [messageGift];
       draftState.messages = GiftedChat.append(messages, updatedMessages);
       draftState.counter = updatedCounter;
     });
+    console.log("UPDATED");
     this.setState(nextState);
   }
 
@@ -84,7 +94,10 @@ class LegoController extends React.PureComponent {
     const self = this;
     //setTimeout(() => {
       self.props.messenger.connect(self._onEventReceived, self._onConnectionStatusReceived);
-    //}, 5000);
+    //}, 500);
+  }
+
+  componentWillUnmount() {
   }
 
   render() {
@@ -93,7 +106,7 @@ class LegoController extends React.PureComponent {
         multiline={false}
         messages={this.state.messages}
         onSend={this._updateSentMessage}
-        renderLoading={()=>{console.log("P"); return <Text>Hello</Text>}}
+        renderLoading={()=><Text>Hello</Text>}
         user={{
           _id: 1,
         }}
@@ -102,7 +115,10 @@ class LegoController extends React.PureComponent {
   }
 }
 
-const LegoControllerWithMessenger = withMessenger(LegoController);
+const LegoControllerWithMessenger = compose(
+  withConnectionDeterminator,
+  withMessenger
+)(LegoController);
 
 
 LegoControllerWithMessenger.navigationOptions = {

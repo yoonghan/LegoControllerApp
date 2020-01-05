@@ -1,0 +1,23 @@
+{
+  "Language": "Bahasa",
+  "Learn More": "Ketahui Lebih",
+  "Enter": "Masuk",
+  "Getting Started": "Cara Penggunaan",
+  "GettingStarted1": "Aplikasi ini perlu diakses menggunakan phone biometric scans, demi menjamin kegunaan funktion \"Remember me\".",
+  "GettingStarted2": "Mula dengan:",
+  "GettingStarted3": "Pastikan phone anda disekure dengan PIN/Biometric.",
+  "GettingStarted4": "Tekan Mula untuk akses aplikasi DEMO.",
+  "About This App": "Tentang aplikasi ini",
+  "AboutThisApp1": "Aplikasi ini diprogram untuk membuktikan Javascript +" +
+                    "Native Mobile development. Kerja ini adalah hasil daripada gabungan Han dan Lee Wan." +
+                    "Untuk maklumat, ini adalah eksperimen untuk mengkaji iOS and Android." +
+                    "Kerana $(wang), ia cuma di publikasi di laman PlayStore sahaja." +
+                    "Aplikasi and Laman tidak menyimpan apa-apa infomasi tentang and.",
+
+  "Introduction": "Halaman",
+  "LegoController": "Kontrol",
+  "Settings": "Tetapan",
+  "About": "Pengenalan",
+  "Language": "Bahasa",
+  "Logout": "Keluar"
+}

@@ -5,4 +5,5 @@
     <string name="PUSHER_EVENT_NAME">walcron_evt_push</string>
     <string name="PUSHER_CHANNEL_NAME">walcron_c</string>
     <string name="PUSHER_AUTH_URL">https://walcron.com/api/pusherauth</string>
+    <string name="generic_error_user_canceled">Authentication cancelled by user.</string>
 </resources>

@@ -14,12 +14,4 @@ const Introduction: () => React$Node = () => {
   );
 }
 
-Introduction.navigationOptions = {
-  drawerLabel: 'Home',
-  drawerIcon: ({ tintColor }) => (
-    <Text>Home</Text>
-  ),
-};
-
-
 export default Introduction;

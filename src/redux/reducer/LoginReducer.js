@@ -15,7 +15,6 @@ const LoginReducer = (state = initial, action) => {
           loggedIn: true,
           info: action.data
       };
-      break;
     case Actions.LOGGED_IN_FAILURE:
     case Actions.LOGGED_OUT_SUCCESS:
       return {
@@ -24,7 +23,6 @@ const LoginReducer = (state = initial, action) => {
           loggedIn: false,
           info: {}
       };
-      break;
     case Actions.LOG_INOUT_QUERY:
       return {
         ...state,

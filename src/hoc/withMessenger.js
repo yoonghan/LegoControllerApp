@@ -16,15 +16,15 @@ const withMessenger = (WrappedComponent) => {
   return class extends React.Component {
     constructor(props) {
       super(props);
+      console.log("Added withMessenger");
       const {messenger, messengerEmitter} = Messenger;
       this._messenger = messenger;
       this._messengerEmitter = messengerEmitter;
-      this._isConnected = false;
       this._canConnect = true;
       this._connectionStatus = STATUS.CONNECTING;
     }
 
-    connect = (eventCallback, connectionCallback) => {
+    _connect = (eventCallback, connectionCallback) => {
       this._messenger.connect(MESSENGER_MESSAGE_EVENT, MESSENGER_CONNECT_EVENT);
       this._addConnectionListener(eventCallback, connectionCallback);
     }
@@ -32,6 +32,7 @@ const withMessenger = (WrappedComponent) => {
     _addConnectionListener = (eventCallback, connectionCallback) => {
       const _eventCallback = eventCallback;
       this._messengerEmitter.addListener(MESSENGER_CONNECT_EVENT, (event) => {
+
         const {status} = event;
         switch(status) {
           case "CONNECTED":
@@ -64,13 +65,15 @@ const withMessenger = (WrappedComponent) => {
       }
     }
 
-    send = (message) => {
+    _send = (message) => {
       if(this._connectionStatus === STATUS.CONNECTED) {
         this._messenger.sendMessage(message);
+        return true;
       }
+      return false;
     }
 
-    disconnect = () => {
+    _disconnect = () => {
       switch(this._connectionStatus) {
         case STATUS.CONNECTED:
         case STATUS.CONNECTING:
@@ -79,17 +82,22 @@ const withMessenger = (WrappedComponent) => {
       }
     }
 
+    _isConnected = () => {
+      return STATUS.CONNECTED === this._connectionStatus;
+    }
+
     componentWillUnmount() {
-      this.disconnect();
+      this._disconnect();
     }
 
     render() {
       return <WrappedComponent
                 messenger={
                   {
-                    connect: this.connect,
-                    disconnect: this.disconnect,
-                    send: this.send
+                    isConnected: this._isConnected,
+                    connect: this._connect,
+                    disconnect: this._disconnect,
+                    send: this._send
                   }
                 }
                 {...this.props}

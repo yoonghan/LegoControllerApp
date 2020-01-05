@@ -18,7 +18,7 @@ export const storeLogin = (param) => async (next) => {
       });
     }
     else {
-      //console.warn(`Unexpected error, no ${LOGIN_USERNAME}, ${LOGIN_TOKEN}, ${LOGIN_ORGANIZATION_ID}`);
+      console.warn(`Unexpected error, no ${LOGIN_USERNAME}, ${LOGIN_TOKEN}`);
     }
   } catch (e) {
     next({
@@ -44,6 +44,7 @@ export const checkLogin = async (next) => {
   }
   catch(e) {
     //Do nothing, failing.
+
   }
 
   next({

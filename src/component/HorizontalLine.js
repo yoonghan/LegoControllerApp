@@ -4,9 +4,9 @@ import {
 } from 'react-native';
 import {styles} from "../util/style";
 
-const HorizontalLine: () => React$Node = ({children}) => {
+const HorizontalLine: () => React$Node = (props) => {
   return (
-    <View style={styles.horizontalLine}/>
+    <View style={props.noPadding?styles.horizontalLineNoPadding: styles.horizontalLine}/>
   )
 }
 

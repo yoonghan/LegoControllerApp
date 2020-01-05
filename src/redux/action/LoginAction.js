@@ -13,7 +13,7 @@ export const logout = ({
   action: ActionTypes.LOG_OUT
 })
 
-export const status = ({
+export const load = ({
   action: ActionTypes.LOG_IN_REQUEST
 })
 
@@ -21,8 +21,12 @@ export const mapDispatchToProps = (dispatch) => ({
   login: (username, token) => {
     dispatch(login({username, token}))
   },
-  logout: () => {dispatch(logout)},
-  status: () => {dispatch(status)}
+  logout: () => {
+    dispatch(logout)
+  },
+  loginLoad: () => {
+    dispatch(load)
+  }
 });
 
 export const mapStateToProps = (state) => ({

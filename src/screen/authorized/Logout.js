@@ -5,7 +5,8 @@ import {
 } from 'react-native';
 import {connect} from "react-redux";
 import {compose} from "redux";
-import * as LoginAction from "../redux/action/LoginAction";
+import * as LoginAction from "../../redux/action/LoginAction";
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 class Logout extends React.PureComponent {
   componentDidMount() {
@@ -19,13 +20,6 @@ class Logout extends React.PureComponent {
     );
   }
 }
-
-Logout.navigationOptions = {
-  drawerLabel: 'Notifications',
-  drawerIcon: ({ tintColor }) => (
-    <Text>Not</Text>
-  ),
-};
 
 export default compose(
   connect(LoginAction.mapStateToProps, LoginAction.mapDispatchToProps)

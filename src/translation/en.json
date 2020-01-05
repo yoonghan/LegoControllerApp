@@ -1,0 +1,24 @@
+{
+  "Learn More": "Learn More",
+  "Enter": "Enter",
+  "Getting Started": "Getting Started",
+  "GettingStarted1": "This app is locked via phone biometric scans in order to develop a new secured application that works hand-in-hand with phone's \"Remember me\" function.",
+  "GettingStarted2": "To start:",
+  "GettingStarted3": "Make sure your phone is PIN/Biometric protected.",
+  "GettingStarted4": "Click Enter to access the DEMO application.",
+  "About This App": "About This App",
+  "AboutThisApp1": "This application is used to showcase the capabilities of Javascript +" +
+                    "Native Mobile development. It is a work of both Han and Lee wan used" +
+                    "for research and experimental purposes. Currently it's designed to" +
+                    "work on both iOS and Android. But due to $ issues, this app is only" +
+                    "published in Android platform. This application and web related site does" +
+                    "not store any information of your" +
+                    "personal details.",
+
+  "Introduction": "Introduction",
+  "LegoController": "Controller",
+  "Settings": "Settings",
+  "About": "About",
+  "Language": "Language",
+  "Logout": "Logout"
+}

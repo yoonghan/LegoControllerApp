@@ -1,5 +1,5 @@
 import React from 'react';
-import {Platform} from 'react-native';
+import {Platform, Text} from 'react-native';
 
 import DrawerButton from "./DrawerButton";
 import TabNavigator from "./TabNavigator";
@@ -9,19 +9,21 @@ import { APPBAR } from "../../util/style";
 
 const Navigation = (Platform.OS === 'ios'? TabNavigator: DrawerNavigator);
 
-export const CreateScreen = (component, title) => {
-  return {
-    title: {
-      screen: component,
-      navigationOptions: createNavigation(title)
-    }
+export const CreateScreen = (component, title, isMain) => {
+  const screenOpt = {};
+  screenOpt[title] = {
+    screen: component,
+    navigationOptions: createNavigation(title, isMain)
   };
+  return screenOpt;
 }
 
-const createNavigation = (title) => ({navigation}) => {
-  const navigationOpt = APPBAR;
-  navigationOpt["title"] = title;
-  if(Platform.OS !== 'ios') {
+const createNavigation = (title, isMain) => ({navigation}) => {
+  const navigationOpt = {
+    ...APPBAR,
+    "title": title
+  };
+  if(isMain && Platform.OS !== 'ios') {
     navigationOpt["headerLeft"] = <DrawerButton navigation={navigation}/>;
   }
   return navigationOpt;

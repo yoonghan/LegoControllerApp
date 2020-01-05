@@ -6,11 +6,7 @@ import android.os.AsyncTask;
 import com.facebook.react.bridge.ReactContext;
 import com.legocontroller.R;
 import com.pusher.client.Pusher;
-import com.pusher.client.PusherOptions;
 import com.pusher.client.channel.PrivateChannel;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class MessengerConnectionTask extends AsyncTask<MessengerBackgroundModel, Void, PrivateChannel> {
 
