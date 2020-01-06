@@ -26,13 +26,17 @@ class Main extends PureComponent {
   }
 
   _handleAppStateChange = (nextAppState) => {
-  if (
-    nextAppState.match(/inactive|background/) &&
-    this.state.appState === 'active'
-  ) {
-    this.props.logout();
-  }
-};
+    const {loginState} = this.props;
+
+    if(loginState && loginState.loggedIn) {
+      if (
+        nextAppState.match(/inactive|background/) &&
+        this.state.appState === 'active'
+      ) {
+        this.props.logout();
+      }
+    }
+  };
 
   _determineScreen = () => {
     const {loginState, translationState} = this.props;
