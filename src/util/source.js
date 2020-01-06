@@ -3,7 +3,7 @@ const imageFolder = "../image/";
 export const getImageSource = (image) => {
   switch(image) {
     case "SCREEN_ENTRY":
-      return require(`${imageFolder}screen_entry.jpg`);
+      return require(`${imageFolder}screen_entry.png`);
     case "FOOTER":
       return require(`${imageFolder}footer.jpg`);
     case "LOGO":

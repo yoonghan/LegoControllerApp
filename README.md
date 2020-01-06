@@ -18,3 +18,9 @@ Run
 ## Know issues
 1. If Android emulator shows a problem loaded with incompatible v6.X Native vs v6.X, delete node_modules folder and restart.
 2. If Android emulator leave a blank screen, start react-native start before deploying the android app.
+3. If ViewPagerAndroid error appear run this:
+
+  1. deleted node_modules folder
+  2. Run npm cache clean --force
+  3. Run npm install
+  4. Run npm start -- --reset-cache

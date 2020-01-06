@@ -1,3 +1,7 @@
+"use strict"
+
+//NOTE: Currently not in used.
+
 import React from 'react';
 import {
   View,
@@ -16,6 +20,7 @@ class Logout extends React.PureComponent {
   render() {
     return (
       <>
+        <Text>Logging out</Text>
       </>
     );
   }

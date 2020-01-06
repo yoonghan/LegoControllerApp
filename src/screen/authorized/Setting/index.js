@@ -7,14 +7,17 @@ import {
   StyleSheet
 }
 from 'react-native';
+import {connect} from "react-redux";
+import {compose} from "redux";
 import Frame from "../../../component/Frame";
 import { styles } from "../../../util/style";
 import { ListItem } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import HorizontalLine from "../../../component/HorizontalLine";
+import * as LoginAction from "../../../redux/action/LoginAction";
 
 const onPressAction = (navigation, key) => () => {
-  navigation.navigate(key);
+    navigation.navigate(key);
 }
 
 const Setting: () => React$Node = (props) => {
@@ -34,7 +37,7 @@ const Setting: () => React$Node = (props) => {
               title={ item.key }
               leftIcon={{ name: item.icon, type:"font-awesome", color: '#CC5555' }}
               bottomDivider
-              onPress={ onPressAction(props.navigation, item.key) }
+              onPress={ props.logout } 
               titleStyle={{ color: '#CC5555', fontWeight: 'bold' }}
             />
           );
@@ -88,4 +91,7 @@ Setting.navigationOptions = {
   ),
 };
 
-export default Setting;
+
+export default compose(
+  connect(LoginAction.mapStateToProps, LoginAction.mapDispatchToProps)
+)(Setting);

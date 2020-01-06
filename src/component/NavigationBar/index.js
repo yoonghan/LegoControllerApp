@@ -23,6 +23,9 @@ const createNavigation = (title, isMain) => ({navigation}) => {
     ...APPBAR,
     "title": title
   };
+  if(title.toLowerCase() === "logout") {
+    navigationOpt["header"] = null;
+  }
   if(isMain && Platform.OS !== 'ios') {
     navigationOpt["headerLeft"] = <DrawerButton navigation={navigation}/>;
   }

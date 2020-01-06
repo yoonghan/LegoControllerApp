@@ -1,4 +1,5 @@
-import React, {PureComponent} from 'react';
+import React, {PureComponent} from "react";
+import {AppState} from "react-native";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import * as LoginAction from "../redux/action/LoginAction";
@@ -12,9 +13,26 @@ class Main extends PureComponent {
 
   constructor(props) {
     super(props);
-    props.loginLoad();
+    //props.loginLoad();
     props.translateLoad();
   }
+
+  componentDidMount() {
+    AppState.addEventListener('change', this._handleAppStateChange);
+  }
+
+  componentWillUnmount() {
+    AppState.removeEventListener('change', this._handleAppStateChange);
+  }
+
+  _handleAppStateChange = (nextAppState) => {
+  if (
+    nextAppState.match(/inactive|background/) &&
+    this.state.appState === 'active'
+  ) {
+    this.props.logout();
+  }
+};
 
   _determineScreen = () => {
     const {loginState, translationState} = this.props;
