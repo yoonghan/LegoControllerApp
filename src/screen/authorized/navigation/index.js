@@ -49,7 +49,7 @@ const NavigationScreens = {
       ),
     }
   },
-  LegoController: {
+  Communicator: {
     screen: LegoController_StackNavigation
   },
   Settings: {

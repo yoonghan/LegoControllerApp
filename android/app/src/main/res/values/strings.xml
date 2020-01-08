@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LegoController</string>
+    <string name="app_name">Walcron Pda</string>
     <string name="PUSHER_APP_KEY">9307e10b49d4e7f47e56</string>
     <string name="PUSHER_CLUSTER">ap1</string>
     <string name="PUSHER_EVENT_NAME">walcron_evt_push</string>
