@@ -81,12 +81,10 @@ class LegoController extends React.PureComponent {
         };
       }
 
-      console.log("DONE");
       const updatedMessages = [messageGift];
       draftState.messages = GiftedChat.append(messages, updatedMessages);
       draftState.counter = updatedCounter;
     });
-    console.log("UPDATED");
     this.setState(nextState);
   }
 
@@ -119,13 +117,5 @@ const LegoControllerWithMessenger = compose(
   withConnectionDeterminator,
   withMessenger
 )(LegoController);
-
-
-LegoControllerWithMessenger.navigationOptions = {
-  drawerLabel: 'Playtime',
-  drawerIcon: ({ tintColor }) => (
-    <Text>Not</Text>
-  ),
-};
 
 export default LegoControllerWithMessenger;

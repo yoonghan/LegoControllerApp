@@ -1,9 +1,22 @@
+// @flow
+
 import React from 'react';
 import { I18nManager } from "react-native";
 import * as RNLocalize from "react-native-localize";
 import * as Actions from "../action/ActionTypes";
 import { translate } from "../../util/tools";
 import i18n from "i18n-js";
+
+export type TranslationType = {
+  locale: string,
+  translate: () => string
+}
+
+export type ActionType = {
+  type: string,
+  languageCode: string
+};
+
 
 const LANGUAGE_FALLBACK = { languageTag: "en", isRTL: false };
 
@@ -12,14 +25,14 @@ const translationGetters = {
   my: () => require("../../translation/my.json")
 };
 
-export const changeLanguage = (languageCode) => {
+export const changeLanguage = (languageCode:string):TranslationType => {
   return {
     locale: setI18nConfig(getCode(languageCode)),
     translate: translate
   };
 }
 
-const getCode = (languageCode) => {
+const getCode = (languageCode:string) => {
   switch(languageCode) {
     case "my":
       return { languageTag: "my", isRTL: false };
@@ -43,7 +56,7 @@ const setI18nConfig = ({ languageTag, isRTL }) => {
 
 const initial = changeLanguage("");
 
-const TranslationReducer = (state = initial, action) => {
+const TranslationReducer = (state:TranslationType = initial, action:ActionType) => {
   switch(action.type) {
     case Actions.TRANSLATION_CHANGE:
       const changedLanguage = changeLanguage(action.languageCode);

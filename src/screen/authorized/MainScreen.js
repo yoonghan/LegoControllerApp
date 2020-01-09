@@ -1,8 +1,8 @@
 import React from 'react';
 import { createAppContainer } from 'react-navigation';
-import NavigationScreens from "./navigation";
+import generateNavigationScreen from "./navigation";
 import NavigationBar from "../../component/NavigationBar";
 
-const MainScreen = createAppContainer(NavigationBar(NavigationScreens));
+const MainScreen = createAppContainer(NavigationBar(generateNavigationScreen()));
 
 export default MainScreen;

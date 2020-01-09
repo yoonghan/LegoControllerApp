@@ -24,3 +24,6 @@ Run
   2. Run npm cache clean --force
   3. Run npm install
   4. Run npm start -- --reset-cache
+
+## IDE integration
+1. When using Atom, install "flow-ide" package helps for autosuggest and code check.

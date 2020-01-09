@@ -55,27 +55,26 @@ public class ReactBiometricAccess extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void showBiometricPrompt(final ReadableMap params, final Promise promise) {
+        String title = params.getString("title");
+        String subTitle = params.getString("subTitle");
+        String cancel = params.getString("cancel");
+
         UiThreadUtil.runOnUiThread(
             new Runnable() {
                 @Override
                 public void run() {
-                    try {
-                        BiometricPrompt.PromptInfo promptInfo =
-                                new BiometricPrompt.PromptInfo.Builder()
-                                        .setTitle("Biometric login for my app")
-                                        .setSubtitle("Log in using your biometric credential")
-                                        .setNegativeButtonText("Cancel")
-                                        .build();
+                    BiometricPrompt.PromptInfo promptInfo =
+                            new BiometricPrompt.PromptInfo.Builder()
+                                    .setTitle(title)
+                                    .setSubtitle(subTitle)
+                                    .setNegativeButtonText(cancel)
+                                    .build();
 
-                        FragmentActivity fragment = (FragmentActivity)getCurrentActivity();
-                        BiometricPrompt biometricPrompt = new BiometricPrompt(fragment,
-                                executor, new SignatureCallback(promise));
+                    FragmentActivity fragment = (FragmentActivity)getCurrentActivity();
+                    BiometricPrompt biometricPrompt = new BiometricPrompt(fragment,
+                            executor, new SignatureCallback(promise));
 
-                        biometricPrompt.authenticate(promptInfo);
-                    } catch (Exception e) {
-                        promise.reject("Error signing payload: " + e.getMessage(),
-                                "Error generating signature: " + e.getMessage());
-                    }
+                    biometricPrompt.authenticate(promptInfo);
                 }
             }
         );

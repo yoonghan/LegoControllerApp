@@ -1,4 +1,5 @@
 {
+  "":"", // For empty strings
   "Learn More": "Learn More",
   "Enter": "Enter",
   "Getting Started": "Getting Started",
@@ -16,9 +17,12 @@
                     "personal details.",
 
   "Introduction": "Introduction",
-  "LegoController": "Controller",
+  "LegoController": "Communicator",
   "Settings": "Settings",
   "About": "About",
   "Language": "Language",
-  "Logout": "Logout"
+  "Logout": "Logout",
+  "Login_Bio_Title":"Biometric login",
+  "Login_Bio_SubTitle":"Log in using your biometric credential",
+  "Login_Bio_Cancel":"Cancel"
 }

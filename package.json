@@ -3,11 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
-    "start": "react-native start",
-    "test": "jest",
-    "lint": "eslint ."
+    "flow": "flow",
+    "startflow": "flow status",
+    "stopflow": "flow stop"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.7.1",
@@ -35,13 +33,16 @@
     "redux": "^4.0.4"
   },
   "devDependencies": {
+    "@babel/cli": "^7.7.7",
     "@babel/core": "7.6.2",
+    "@babel/preset-flow": "^7.7.4",
     "@babel/runtime": "7.6.2",
     "@react-native-community/eslint-config": "0.0.3",
     "babel-jest": "24.9.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "eslint": "6.5.1",
+    "flow-bin": "^0.105.2",
     "jest": "24.9.0",
     "metro-react-native-babel-preset": "0.51.1",
     "react-dom": "^16.10.2",

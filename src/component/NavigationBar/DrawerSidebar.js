@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { SafeAreaView, ThemeContext } from 'react-navigation';
 import TouchableItem from "./TouchableItem";
+import { translate } from "../../util/tools";
 
 class DrawerSidebar extends React.PureComponent {
 
@@ -101,7 +102,7 @@ class DrawerSidebar extends React.PureComponent {
     const color = focused ? activeTintColor : inactiveTintColor;
     const scene = { route, index, focused, tintColor: color };
     const icon = renderIcon(scene);
-    const label = getLabel(scene);
+    const label = translate(getLabel(scene));
     const accessibilityLabel =
       typeof label === 'string' ? label : undefined;
     const backgroundColor = focused

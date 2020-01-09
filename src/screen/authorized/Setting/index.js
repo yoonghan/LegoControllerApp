@@ -11,6 +11,7 @@ import {connect} from "react-redux";
 import {compose} from "redux";
 import Frame from "../../../component/Frame";
 import { styles } from "../../../util/style";
+import { translate } from "../../../util/tools";
 import { ListItem } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import HorizontalLine from "../../../component/HorizontalLine";
@@ -25,43 +26,43 @@ const Setting: () => React$Node = (props) => {
     <View style={settingsStyles.container}>
     {
       [
-        {key: 'Language', icon: "language"},
-        {key: 'About', icon: "account-circle"},
-        {key: '', icon: ""},
-        {key: 'Logout', icon: "sign-out"}
+        {key: "Language", icon: "language"},
+        {key: "About", icon: "account-circle"},
+        {key: "", icon: ""},
+        {key: "Logout", icon: "sign-out"}
       ].map((item, i) => {
-        if(item.key === "Logout") {
-          return (
-            <ListItem
-              key={i}
-              title={ item.key }
-              leftIcon={{ name: item.icon, type:"font-awesome", color: '#CC5555' }}
-              bottomDivider
-              onPress={ props.logout } 
-              titleStyle={{ color: '#CC5555', fontWeight: 'bold' }}
-            />
-          );
-        }
-        if(item.key === "") {
-          return (
-            <ListItem
-              key={i}
-              title={ item.key }
-              bottomDivider
-            />
-          )
-        }
-        else {
-          return (
-            <ListItem
-              key={i}
-              title={ item.key }
-              leftIcon={{ name: item.icon }}
-              bottomDivider
-              chevron
-              onPress={ onPressAction(props.navigation, item.key) }
-            />
-          );
+        const translatedTitle = translate(item.key);
+        switch (item.key) {
+          case "Logout":
+            return (
+              <ListItem
+                key={i}
+                title={ translatedTitle }
+                leftIcon={{ name: item.icon, type:"font-awesome", color: '#CC5555' }}
+                bottomDivider
+                onPress={ props.logout }
+                titleStyle={{ color: '#CC5555', fontWeight: 'bold' }}
+              />
+            );
+          case "":
+            return (
+              <ListItem
+                key={i}
+                title={ translatedTitle }
+                bottomDivider
+              />
+            )
+          default:
+            return (
+              <ListItem
+                key={i}
+                title={ translatedTitle }
+                leftIcon={{ name: item.icon }}
+                bottomDivider
+                chevron
+                onPress={ onPressAction(props.navigation, item.key) }
+              />
+            );
         }
       })
     }
@@ -83,14 +84,6 @@ const settingsStyles = StyleSheet.create({
     textAlign: "left"
   },
 })
-
-Setting.navigationOptions = {
-  drawerLabel: 'Notifications',
-  drawerIcon: ({ tintColor }) => (
-    <Text>Not</Text>
-  ),
-};
-
 
 export default compose(
   connect(LoginAction.mapStateToProps, LoginAction.mapDispatchToProps)

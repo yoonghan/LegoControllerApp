@@ -4,8 +4,8 @@ import {Platform, Text} from 'react-native';
 import DrawerButton from "./DrawerButton";
 import TabNavigator from "./TabNavigator";
 import DrawerNavigator from "./DrawerNavigator";
-
 import { APPBAR } from "../../util/style";
+import { translate } from "../../util/tools";
 
 const Navigation = (Platform.OS === 'ios'? TabNavigator: DrawerNavigator);
 
@@ -21,7 +21,7 @@ export const CreateScreen = (component, title, isMain) => {
 const createNavigation = (title, isMain) => ({navigation}) => {
   const navigationOpt = {
     ...APPBAR,
-    "title": title
+    "title": translate(title)
   };
   if(title.toLowerCase() === "logout") {
     navigationOpt["header"] = null;

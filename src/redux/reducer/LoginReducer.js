@@ -1,4 +1,22 @@
+// @flow
+
 import * as Actions from "../action/ActionTypes";
+
+export type ActionType = {
+  type: string,
+  data: LoginInfoType
+};
+
+export type LoginInfoType = {
+  username: string,
+  token: string
+}
+
+export type LoginType = {
+  query: boolean,
+  loggedIn: boolean,
+  info: LoginInfoType
+}
 
 const initial = {
   query: false,
@@ -6,7 +24,7 @@ const initial = {
   info: {}
 };
 
-const LoginReducer = (state = initial, action) => {
+const LoginReducer = (state:LoginType = initial, action: ActionType) => {
   switch(action.type) {
     case Actions.LOGGED_IN_SUCCESS:
       return {

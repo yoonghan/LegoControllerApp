@@ -16,9 +16,13 @@ import { Button } from 'react-native-elements';
 import BiometricAccess from "../../native/android/BiometricAccess";
 import { VERSION } from "../../util/const";
 
-_buttonPressLogin = ({login}) => async () => {
+_buttonPressLogin = ({login, translationState}) => async () => {
   try {
-    const result = await BiometricAccess.showBiometricPrompt({});
+    const result = await BiometricAccess.showBiometricPrompt({
+      title: translationState.translate("Login_Bio_Title"),
+      subTitle: translationState.translate("Login_Bio_SubTitle"),
+      cancel: translationState.translate("Login_Bio_Cancel")
+    });
     if(result && result.success) {
       login(
          "Anonymous",
