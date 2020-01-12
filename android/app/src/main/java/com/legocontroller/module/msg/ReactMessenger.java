@@ -23,9 +23,10 @@ import java.util.concurrent.TimeoutException;
 
 public class ReactMessenger extends ReactContextBaseJavaModule {
     private final String LOG = ReactMessenger.class.getName();
-    private PrivateChannel privateChannel = null;
-
     private final Pusher pusher;
+
+    private PrivateChannel privateChannel = null;
+    private String authToken;
 
     public ReactMessenger(ReactApplicationContext context) {
         super(context);
@@ -48,8 +49,10 @@ public class ReactMessenger extends ReactContextBaseJavaModule {
 
 
     @ReactMethod
-    public void connect(String eventEmitterName, String connectionEmitterName) {
+    public void connect(String authToken, String eventEmitterName, String connectionEmitterName) {
+        this.authToken = authToken;
         MessengerBackgroundModel messengerBackgroundModel = new MessengerBackgroundModel(
+                getChannelName(authToken),
                 eventEmitterName,
                 connectionEmitterName);
 
@@ -84,12 +87,19 @@ public class ReactMessenger extends ReactContextBaseJavaModule {
                     createMessage(message));
 
         }
+        else {
+            createMessage("[Message fail to send]");
+        }
+    }
+
+    private String getChannelName(String authToken) {
+        return "private-wal_" + authToken;
     }
 
     @ReactMethod
     public void disconnect() {
         if(privateChannel != null) {
-            pusher.unsubscribe("private-"+getReactApplicationContext().getString(R.string.PUSHER_CHANNEL_NAME));
+            pusher.unsubscribe(getChannelName(this.authToken));
             pusher.disconnect();
         }
     }

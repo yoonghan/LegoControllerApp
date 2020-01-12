@@ -31,7 +31,8 @@ const Setting: () => React$Node = (props) => {
         {key: "", icon: ""},
         {key: "Logout", icon: "sign-out"}
       ].map((item, i) => {
-        const translatedTitle = translate(item.key);
+        const translatedTitle = (item.key === "")? "" : translate(item.key);
+
         switch (item.key) {
           case "Logout":
             return (

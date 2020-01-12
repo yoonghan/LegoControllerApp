@@ -27,7 +27,7 @@ public class MessengerConnectionTask extends AsyncTask<MessengerBackgroundModel,
         pusher.connect();
 
         PrivateChannel privateChannel = pusher.subscribePrivate(
-                "private-"+context.getString(R.string.PUSHER_CHANNEL_NAME),
+                messengerBackgroundModel.getChannelName(),
                 new MessengerEventListener(this.context, eventEmitterName, connectionEmitterName),
                 "client-"+context.getString(R.string.PUSHER_EVENT_NAME)
         );

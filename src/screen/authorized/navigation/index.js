@@ -13,9 +13,10 @@ import Setting from "../Setting";
 import Setting_About from "../Setting/About";
 import Setting_Language from "../../unauthorized/Language";
 
-//Introduction Navigation
+//Navigation
 import Introduction from "../Introduction";
 import LegoController from "../LegoController";
+import Todo from "../Todo";
 
 //Created as function to rerender translated messages
 function generateNavigationScreen() {
@@ -36,9 +37,8 @@ function generateNavigationScreen() {
   );
 
   const Introduction_StackNavigation = createStackNavigator(CreateScreen(Introduction, "Introduction", true));
-
-  //Lego NavigationBar
   const LegoController_StackNavigation = createStackNavigator(CreateScreen(LegoController, "LegoController", true));
+  const Todo_StackNavigation = createStackNavigator(CreateScreen(Todo, "Todo", true));
 
   const NavigationScreens = {
     Introduction: {
@@ -51,6 +51,9 @@ function generateNavigationScreen() {
           />
         ),
       }
+    },
+    Todo: {
+      screen: Todo_StackNavigation
     },
     LegoController: {
       screen: LegoController_StackNavigation

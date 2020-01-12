@@ -1,6 +1,4 @@
 {
-  "": "", // For empty strings
-  "Language": "Bahasa",
   "Learn More": "Ketahui Lebih",
   "Enter": "Masuk",
   "Getting Started": "Cara Penggunaan",
@@ -18,10 +16,11 @@
   "Introduction": "Halaman",
   "LegoController": "Komunikasi",
   "Settings": "Tetapan",
+  "Todo": "Memo",
   "About": "Pengenalan",
   "Language": "Bahasa",
   "Logout": "Keluar",
   "Login_Bio_Title":"Biometric login",
   "Login_Bio_SubTitle":"Akses menggunakan biometric credential anda",
-  "Login_Bio_Cancel":"Batal"
+  "Login_Bio_Cancel":"Batal",
 }

@@ -24,8 +24,8 @@ const withMessenger = (WrappedComponent) => {
       this._connectionStatus = STATUS.CONNECTING;
     }
 
-    _connect = (eventCallback, connectionCallback) => {
-      this._messenger.connect(MESSENGER_MESSAGE_EVENT, MESSENGER_CONNECT_EVENT);
+    _connect = (authToken, eventCallback, connectionCallback) => {
+      this._messenger.connect(authToken, MESSENGER_MESSAGE_EVENT, MESSENGER_CONNECT_EVENT);
       this._addConnectionListener(eventCallback, connectionCallback);
     }
 
