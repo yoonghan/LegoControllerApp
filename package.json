@@ -47,7 +47,7 @@
     "metro-react-native-babel-preset": "0.51.1",
     "react-dom": "^16.10.2",
     "react-native-mock-render": "^0.1.5",
-    "react-native-sortable-listview": "^0.2.9",
+    "react-native-sortable-list": "0.0.23",
     "react-test-renderer": "16.9.0"
   },
   "jest": {

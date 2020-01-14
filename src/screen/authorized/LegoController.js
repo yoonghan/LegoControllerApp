@@ -107,7 +107,8 @@ const LegoController = ({tokenApi, messenger}) => {
       changeConnectionStatus(enumStatus.INIT_TOKEN);
     }
     else if(tokenApi.isError){
-      updateMessage("Encountered Issue Connecting");
+      updateMessage("Encountered Issue Connecting", true);
+      console.warn(tokenApi.error, "Error");
     }
     else if(tokenApi.isLoading) {
       updateMessage("Authenticating connection", true);

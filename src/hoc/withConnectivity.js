@@ -100,9 +100,7 @@ const withConnectivity = (result: any, defaultSuccessResult: any)  => (path:stri
       if(data.errors) {
         const {code, message} = data.errors;
         throw Error(`Code: ${code}, Message: ${message}`);
-
       }
-
     }
 
     _getErrorMessage = (actualError: string, errorMessage?: string) => {
