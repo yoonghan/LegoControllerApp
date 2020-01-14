@@ -139,7 +139,7 @@ const withConnectivity = (result: any, defaultSuccessResult: any)  => (path:stri
       let nextState = produce(this.state, draft => {
         draft.isLoading = false;
         draft.isError = true;
-        draft.error = (error).message;
+        draft.error = "Error:"+(error).message;
       });
       this.setState(nextState);
     }
