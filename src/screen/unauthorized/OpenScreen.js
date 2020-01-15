@@ -7,8 +7,8 @@ import {
   Text,
   TouchableOpacity
 } from 'react-native';
-import {connect} from "react-redux";
 import {compose} from "redux";
+import {connect} from "react-redux";
 import * as TranslationAction from "../../redux/action/TranslationAction";
 import * as LoginAction from "../../redux/action/LoginAction";
 import {getImageSource} from "../../util/source";

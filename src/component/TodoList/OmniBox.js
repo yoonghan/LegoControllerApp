@@ -6,18 +6,15 @@ import Utils from './Utils';
 class OmniBox extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      newValue: ""
+    };
   }
 
-  componentWillMount() {
-    this.setState({
-      newValue: ''
-    });
-  }
 
   onChange = (event) => {
     const title = event.nativeEvent.text;
     const dataList = this.props.data.filter((item) => item.title.match(new RegExp('.*' + title +'.*', 'gi')));
-
     this.setState({
       newValue: title
     });

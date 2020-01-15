@@ -3,7 +3,7 @@ import { Text, View, TouchableHighlight} from 'react-native';
 import TodoModel from './TodoModel';
 import OmniBox from './OmniBox';
 import ListViewItem from './ListViewItem';
-import Utils from './Utils';
+import { move } from './Utils';
 import SortableList from 'react-native-sortable-list';
 
 let dataList = [
@@ -15,10 +15,6 @@ let dataList = [
   new TodoModel('Sync data with Firebase')
 ];
 
-function getOrder(list) {
-  return Object.keys(list);
-}
-
 const ListView = () => {
   const [datas, setDatas] = React.useState(dataList);
 
@@ -27,7 +23,12 @@ const ListView = () => {
   }
 
   function renderRow(data, index) {
-    return <ListViewItem data={data}/>;
+    return (
+      <ListViewItem
+        data={data}
+        key={`listview_${index}`}
+        dataIndex={index}
+        />);
   }
 
   function renderDatas() {
@@ -40,7 +41,7 @@ const ListView = () => {
   return (
       <View >
         <OmniBox
-          data={datas}
+          data={dataList}
           updateDataList={updateDataList}/>
         {renderDatas()}
       </View>

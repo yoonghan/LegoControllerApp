@@ -11,7 +11,7 @@ class ListViewItem extends Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot){
-    if(this.props.data.length !== prevProps.data.length) {
+    if(this.state.data !== prevState.data) {
       this.setState({
         data: this.props.data
       })
@@ -24,8 +24,6 @@ class ListViewItem extends Component {
     this.setState({
       data: data
     });
-
-    this.props.onCompletedChange(data, this.props.dataIndex);
   }
 
   render() {
@@ -34,7 +32,7 @@ class ListViewItem extends Component {
     let textDecorationLine = data.completed ? 'line-through' : 'none';
     return (
       <TouchableHighlight underlayColor={'#eee'} style={{paddingTop: 6, paddingBottom: 6, backgroundColor: "#F8F8F8", borderBottomWidth:1, borderColor: '#eee'}} {...this.props.sortHandlers}>
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+        <View style={{flexDirection: 'row', alignItems: 'center', padding: 3, paddingLeft: 15}}>
           <CheckBox data={data} color={color} onCheckBoxPressed={this._onCheckBoxPressed}></CheckBox>
           <Text style={{fontSize:18, color: color, textDecorationLine: textDecorationLine}}>{data.title}</Text>
         </View>

@@ -1,23 +1,25 @@
 import React, {useState, useEffect} from 'react';
-import { compose } from 'redux'
-import { Text } from 'react-native';
+import { compose } from "redux";
+import {connect} from "react-redux";
+import { Text, StyleSheet, View } from "react-native";
 import produce from "immer";
 import withConnectionDeterminator from "../../hoc/withConnectionDeterminator";
 import withMessenger, {STATUS} from "../../hoc/withMessenger";
 import withConnectivity from "../../hoc/withConnectivity";
-import { GiftedChat } from 'react-native-gifted-chat';
+import { GiftedChat, Send } from 'react-native-gifted-chat';
+import * as TranslationAction from "../../redux/action/TranslationAction";
 
 const enumStatus = {
   NULL: 0,
   INIT: 1,
   INIT_TOKEN: 2,
   INIT_CONNECT: 3,
-  X:9,
   COMPLETE: 4,
-  INIT_DISCONNECT: 5
+  INIT_DISCONNECT: 5,
+  DISCONNECTED: 6
 }
 
-const LegoController = ({tokenApi, messenger}) => {
+const LegoController = ({translationState, tokenApi, messenger}) => {
   const [messages, setMessages] = useState(
     [
       {
@@ -79,11 +81,34 @@ const LegoController = ({tokenApi, messenger}) => {
     switch (status) {
       case STATUS.CONNECTED:
         updateMessage("Connected", true);
+        changeConnectionStatus(enumStatus.COMPLETE);
         break;
       case STATUS.DISCONNECTED:
         updateMessage("Disconnected", true);
+        changeConnectionStatus(enumStatus.DISCONNECTED);
         break;
       default:
+    }
+  }
+
+  function renderSend(props) {
+    switch(connectionStatus) {
+      case enumStatus.COMPLETE:
+        return (<Send
+            {...props}
+        />);
+      case enumStatus.DISCONNECTED:
+        return (
+          <View style={styles.container}>
+            <Text style={styles.text}>{translationState.translate("FAILED")}</Text>
+          </View>
+        )
+      default:
+        return (
+          <View style={styles.container}>
+            <Text style={styles.text}>{translationState.translate("LOADING")}.. </Text>
+          </View>
+        );
     }
   }
 
@@ -96,10 +121,6 @@ const LegoController = ({tokenApi, messenger}) => {
     if(!tokenApi.isLoading) {
       tokenApi.connect(undefined, "Unable to get key", 'GET');
     }
-  }
-
-  function displayLoading() {
-    return <React.Fragment/>;
   }
 
   React.useEffect(() => {
@@ -129,7 +150,6 @@ const LegoController = ({tokenApi, messenger}) => {
         break;
       case enumStatus.INIT_CONNECT:
         messenger.connect(tokenApi.success.codegen, onEventReceived, onConnectionStatusReceived);
-        changeConnectionStatus(enumStatus.COMPLETE);
         break;
       default:
     }
@@ -140,20 +160,38 @@ const LegoController = ({tokenApi, messenger}) => {
       multiline={false}
       messages={messages}
       onSend={updateSentMessage}
-      renderLoading={displayLoading}
+      isLoadingEarlier={true}
+      scrollToBottom={true}
       user={{
         _id: 1,
       }}
+      placeholder={translationState.translate("TypeaMessage")}
+      renderSend = {renderSend}
     />
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    height: 44,
+    justifyContent: 'flex-end',
+  },
+  text: {
+    fontWeight: '600',
+    fontSize: 17,
+    marginBottom: 12,
+    marginLeft: 10,
+    marginRight: 10,
+  },
+})
 
 const mapTokenApi = (result) => ({tokenApi: result});
 
 const LegoControllerWithMessenger = compose(
   withConnectionDeterminator,
   withConnectivity(mapTokenApi, {})("https://www.walcron.com/api/manipulator"),
-  withMessenger
+  withMessenger,
+  connect(TranslationAction.mapStateToProps, TranslationAction.mapDispatchToProps)
 )(LegoController);
 
 export default LegoControllerWithMessenger;

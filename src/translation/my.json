@@ -23,4 +23,7 @@
   "Login_Bio_Title":"Biometric login",
   "Login_Bio_SubTitle":"Akses menggunakan biometric credential anda",
   "Login_Bio_Cancel":"Batal",
+  "LOADING":"MUAT",
+  "FAILED":"GAGAL",
+  "TypeaMessage":"Taip di sini..."
 }
