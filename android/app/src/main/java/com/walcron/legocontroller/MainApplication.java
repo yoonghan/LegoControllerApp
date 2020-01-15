@@ -1,11 +1,11 @@
-package com.legocontroller;
+package com.walcron.legocontroller;
 
 import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
-import com.legocontroller.manager.CustomPackage;
-import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
+import com.walcron.legocontroller.BuildConfig;
+import com.walcron.legocontroller.manager.CustomPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;

@@ -1,4 +1,4 @@
-package com.legocontroller;
+package com.walcron.legocontroller;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

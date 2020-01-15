@@ -1,7 +1,6 @@
-package com.legocontroller.module.msg;
+package com.walcron.legocontroller.module.msg;
 
 import android.util.Log;
-
 
 import javax.sql.ConnectionEvent;
 import javax.sql.ConnectionEventListener;

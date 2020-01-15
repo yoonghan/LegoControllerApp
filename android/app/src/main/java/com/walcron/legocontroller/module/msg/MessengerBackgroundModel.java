@@ -1,6 +1,4 @@
-package com.legocontroller.module.msg;
-
-import com.facebook.react.bridge.ReactContext;
+package com.walcron.legocontroller.module.msg;
 
 public class MessengerBackgroundModel {
     private final String eventEmitterName;

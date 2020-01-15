@@ -1,4 +1,4 @@
-package com.legocontroller.module.msg;
+package com.walcron.legocontroller.module.msg;
 
 import android.content.Context;
 import android.util.Log;
@@ -8,9 +8,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.Volley;
-import com.legocontroller.R;
 import com.pusher.client.AuthorizationFailureException;
 import com.pusher.client.Authorizer;
+import com.walcron.legocontroller.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;

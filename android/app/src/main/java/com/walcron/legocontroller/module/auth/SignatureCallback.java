@@ -1,4 +1,4 @@
-package com.legocontroller.module.auth;
+package com.walcron.legocontroller.module.auth;
 
 import androidx.annotation.NonNull;
 import androidx.biometric.BiometricPrompt;

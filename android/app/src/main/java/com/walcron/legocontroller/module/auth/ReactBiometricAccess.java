@@ -1,4 +1,4 @@
-package com.legocontroller.module.auth;
+package com.walcron.legocontroller.module.auth;
 
 import android.util.Log;
 

@@ -1,11 +1,11 @@
-package com.legocontroller.manager;
+package com.walcron.legocontroller.manager;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ViewManager;
-import com.legocontroller.module.auth.ReactBiometricAccess;
-import com.legocontroller.module.msg.ReactMessenger;
+import com.walcron.legocontroller.module.auth.ReactBiometricAccess;
+import com.walcron.legocontroller.module.msg.ReactMessenger;
 
 import java.util.ArrayList;
 import java.util.Collections;
