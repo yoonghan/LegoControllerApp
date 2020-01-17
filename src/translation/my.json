@@ -26,5 +26,11 @@
   "Password": "Kata Laluan",
   "Register": "Daftar",
   "Forgot Password": "Lupa Kata Laluan",
-  "Retype Password": "Kata Laluan Sekali"
+  "Retype Password": "Kata Laluan Sekali",
+  "Required": "Perlu diisi",
+  "Invalid email address": "Invalid email address",
+  "Too short": "Tidak mencukupi",
+  "Too long": "Terlebih",
+  "Passwords must match": "Kata Laluan tidak mancis"
+
 }

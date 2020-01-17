@@ -26,5 +26,10 @@
   "Password": "Password",
   "Register": "Register",
   "Forgot Password": "Forgot Password",
-  "Retype Password": "Retype Password"
+  "Retype Password": "Retype Password",
+  "Required": "Required",
+  "Invalid email address": "Invalid email address",
+  "Too short": "Too short",
+  "Too long": "Too long",
+  "Passwords must match": "Passwords must match"
 }
