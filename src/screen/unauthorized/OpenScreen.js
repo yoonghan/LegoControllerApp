@@ -16,31 +16,35 @@ import { Button } from 'react-native-elements';
 import BiometricAccess from "../../native/android/BiometricAccess";
 import { VERSION } from "../../util/const";
 
-_buttonPressLogin = ({login, translationState}) => async () => {
-  try {
-    const result = await BiometricAccess.showBiometricPrompt({
-      title: translationState.translate("Login_Bio_Title"),
-      subTitle: translationState.translate("Login_Bio_SubTitle"),
-      cancel: translationState.translate("Login_Bio_Cancel")
-    });
-    if(result && result.success) {
-      login(
-         "Anonymous",
-         "101001010101",
-      );
-    };
-  }
-  catch (e) {
-    console.warn(`Cancelled - ${e}`);
-  }
+// _buttonPressLogin = ({login, translationState}) => async () => {
+//   try {
+//     const result = await BiometricAccess.showBiometricPrompt({
+//       title: translationState.translate("Login_Bio_Title"),
+//       subTitle: translationState.translate("Login_Bio_SubTitle"),
+//       cancel: translationState.translate("Login_Bio_Cancel")
+//     });
+//     if(result && result.success) {
+//       login(
+//          "Anonymous",
+//          "101001010101",
+//       );
+//     };
+//   }
+//   catch (e) {
+//     console.warn(`Cancelled - ${e}`);
+//   }
+// }
+
+_buttonPressLogin = ({navigation}) => () => {
+  navigation.navigate('Login');
 }
 
 _buttonPressLearnMore = ({navigation}) => () => {
-  navigation.navigate('LearnMore')
+  navigation.navigate('LearnMore');
 }
 
 _buttonPressLanguage = ({navigation}) => () => {
-  navigation.navigate('Language')
+  navigation.navigate('Language');
 }
 
 const OpenScreen: () => React$Node = (props) => {

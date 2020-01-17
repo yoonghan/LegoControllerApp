@@ -21,6 +21,7 @@
   "Todo": "Memo",
   "About": "About",
   "Language": "Language",
+  "Login": "Login",
   "Logout": "Logout",
   "Login_Bio_Title":"Biometric login",
   "Login_Bio_SubTitle":"Log in using your biometric credential",
