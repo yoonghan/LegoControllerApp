@@ -4,6 +4,7 @@ import React from "react";
 import Swiper from "react-native-swiper";
 import Login from "./Login";
 import Register from "./Register";
+import { ScrollView } from "react-native";
 
 const LoginScreen: () => React$Node = () => {
   const swiperRef = React.createRef();
@@ -21,10 +22,12 @@ const LoginScreen: () => React$Node = () => {
   }
 
   return (
-    <Swiper ref={swiperRef}>
-      <Login onRegisterPageCall={swipeToRegisterPage}/>
-      <Register onLoginPageCall={swipeToLoginPage}/>
-    </Swiper>
+    <ScrollView>
+      <Swiper ref={swiperRef} style={{height: 600}}>
+        <Login onRegisterPageCall={swipeToRegisterPage}/>
+        <Register onLoginPageCall={swipeToLoginPage}/>
+      </Swiper>
+    </ScrollView>
   );
 }
 
