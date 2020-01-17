@@ -1,26 +1,28 @@
-import React from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { Input } from 'react-native-elements';
-import { View, StyleSheet } from 'react-native';
-import { Button } from 'react-native-elements';
+import React from "react";
+import {compose} from "redux";
+import {connect} from "react-redux";
+import Icon from "react-native-vector-icons/FontAwesome";
+import { Input, Button } from "react-native-elements";
+import { View, StyleSheet } from "react-native";
+import * as TranslationAction from "../../../redux/action/TranslationAction";
 
-const Login: () => React$Node = () => {
+const Login: () => React$Node = ({translationState, onRegisterPageCall}) => {
   return (
     <View>
       <View style={styles.inputContainer}>
         <Input
-          label="Your email address"
+          label={translationState.translate("Your email address")}
           placeholder="email@address.com"
           leftIcon={
             <Icon
-              name="user"
+              name="envelope"
               size={24}
               color="#86939e"
             />
           }
           />
         <Input
-          label="Password"
+          label={translationState.translate("Password")}
           placeholder='Password'
           leftIcon={
             <Icon
@@ -32,18 +34,19 @@ const Login: () => React$Node = () => {
           containerStyle={styles.gapContainer}
         />
         <Button
-          title="Login"
+          title={translationState.translate("Login")}
           containerStyle={styles.btnContainer}
         />
         <Button
-          title="Sign up"
+          title={translationState.translate("Register")}
           type="outline"
           containerStyle={styles.btnContainer}
+          onPress={onRegisterPageCall}
         />
       </View>
       <View style={styles.miscContainer}>
         <Button
-          title="Forgot password"
+          title={translationState.translate("Forgot Password")}
           type="clear"
         />
       </View>
@@ -77,4 +80,6 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+export default compose(
+  connect(TranslationAction.mapStateToProps, TranslationAction.mapDispatchToProps)
+)(Login);

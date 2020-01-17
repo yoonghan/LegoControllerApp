@@ -1,7 +1,7 @@
 import React from 'react';
 import { fromRight } from 'react-navigation-transitions';
 import { createStackNavigator } from 'react-navigation-stack';
-import Login from "../Login";
+import LoginScreen from "../LoginScreen";
 import LearnMore from "../LearnMore";
 import OpenScreen from "../OpenScreen";
 import Language from "../Language";
@@ -18,8 +18,8 @@ function generateNavigationScreen() {
         header: null
       }
     },
-    Login: {
-      screen: Login,
+    LoginScreen: {
+      screen: LoginScreen,
       navigationOptions: {
         title: translate("Login"),
         ...APPBAR

@@ -7,12 +7,7 @@
   "GettingStarted3": "Pastikan phone anda disekure dengan PIN/Biometric.",
   "GettingStarted4": "Tekan Mula untuk akses aplikasi DEMO.",
   "About This App": "Tentang aplikasi ini",
-  "AboutThisApp1": "Aplikasi ini diprogram untuk membuktikan Javascript +" +
-                    "Native Mobile development. Kerja ini adalah hasil daripada gabungan Han dan Lee Wan." +
-                    "Untuk maklumat, ini adalah eksperimen untuk mengkaji iOS and Android." +
-                    "Kerana $(wang), ia cuma di publikasi di laman PlayStore sahaja." +
-                    "Aplikasi and Laman tidak menyimpan apa-apa infomasi tentang and.",
-
+  "AboutThisApp1": "Aplikasi ini diprogram untuk membuktikan Javascript + Native Mobile development. Kerja ini adalah hasil daripada gabungan Han dan Lee Wan. Untuk maklumat, ini adalah eksperimen untuk mengkaji iOS and Android. Kerana $(wang), ia cuma di publikasi di laman PlayStore sahaja. Aplikasi and Laman tidak menyimpan apa-apa infomasi tentang and.",
   "Introduction": "Halaman",
   "LegoController": "Komunikasi",
   "Settings": "Tetapan",
@@ -26,5 +21,10 @@
   "Login_Bio_Cancel":"Batal",
   "LOADING":"MUAT",
   "FAILED":"GAGAL",
-  "TypeaMessage":"Taip di sini..."
+  "TypeaMessage":"Taip di sini...",
+  "Your email address": "Email address anda",
+  "Password": "Kata Laluan",
+  "Register": "Daftar",
+  "Forgot Password": "Lupa Kata Laluan",
+  "Retype Password": "Kata Laluan Sekali"
 }

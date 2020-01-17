@@ -1,11 +1,11 @@
-`use strict`
+"use strict"
 
-import React from 'react';
+import React from "react";
 import {
   View,
   Text
-} from 'react-native';
-import Swiper from 'react-native-swiper';
+} from "react-native";
+import Swiper from "react-native-swiper";
 
 const Introduction: () => React$Node = () => {
   return (

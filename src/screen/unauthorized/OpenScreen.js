@@ -35,21 +35,19 @@ import { VERSION } from "../../util/const";
 //   }
 // }
 
-_buttonPressLogin = ({navigation}) => () => {
-  navigation.navigate('Login');
+_buttonPressLogin = (navigation) => () => {
+  navigation.navigate('LoginScreen');
 }
 
-_buttonPressLearnMore = ({navigation}) => () => {
+_buttonPressLearnMore = (navigation) => () => {
   navigation.navigate('LearnMore');
 }
 
-_buttonPressLanguage = ({navigation}) => () => {
+_buttonPressLanguage = (navigation) => () => {
   navigation.navigate('Language');
 }
 
-const OpenScreen: () => React$Node = (props) => {
-  const {translationState} = props;
-
+const OpenScreen: () => React$Node = ({translationState, navigation}) => {
   return (
     <SafeAreaView style={styles.mainContainer}>
       <ImageBackground
@@ -60,7 +58,7 @@ const OpenScreen: () => React$Node = (props) => {
             style={styles.buttonContainer}>
             <Button
               title={translationState.translate("Enter")}
-              onPress={this._buttonPressLogin(props)}
+              onPress={this._buttonPressLogin(navigation)}
               />
           </View>
           <View
@@ -69,7 +67,7 @@ const OpenScreen: () => React$Node = (props) => {
             <Button
               title={translationState.translate("Learn More")}
               type={"outline"}
-              onPress={this._buttonPressLearnMore(props)}
+              onPress={this._buttonPressLearnMore(navigation)}
             />
           </View>
           <View
@@ -78,7 +76,7 @@ const OpenScreen: () => React$Node = (props) => {
               title={translationState.translate("Language")}
               containerStyle={styles.languageBtn}
               type={"outline"}
-              onPress={this._buttonPressLanguage(props)}
+              onPress={this._buttonPressLanguage(navigation)}
             />
           </View>
         </View>
