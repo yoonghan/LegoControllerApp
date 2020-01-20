@@ -2,13 +2,13 @@ import React from "react";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import { Formik } from "formik";
-import Icon from "react-native-vector-icons/FontAwesome";
-import { Input, Button } from "react-native-elements";
+import { Button } from "react-native-elements";
 import { View, StyleSheet } from "react-native";
+import InputWithIcon from "../../../component/InputWithIcon";
 import * as TranslationAction from "../../../redux/action/TranslationAction";
 import { LoginSchema } from "../../../util/schemaValidator";
 
-const Login: () => React$Node = ({translationState, onRegisterPageCall}) => {
+const Login: () => React$Node = ({translationState, onRegisterPageCall, loginCallback, onForgotPasswordCall}) => {
   return (
     <View>
       <View style={styles.inputContainer}>
@@ -17,41 +17,30 @@ const Login: () => React$Node = ({translationState, onRegisterPageCall}) => {
           validateOnBlur={false}
           initialValues={{ email: '', password: ''}}
           validationSchema={ LoginSchema }
-          onSubmit={values => {
-            console.warn("P")
+          onSubmit={(values, {setFieldValue}) => {
+            loginCallback(values.email, values.password);
           }}
           >
           {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
             <React.Fragment>
-              <Input
+              <InputWithIcon
                 label={translationState.translate("Your email address")}
                 placeholder="email@address.com"
                 onChangeText={handleChange('email')}
                 onBlur={handleBlur('email')}
                 value={values.email}
                 errorMessage={errors.email}
-                leftIcon={
-                  <Icon
-                    name="envelope"
-                    size={24}
-                    color="#86939e"
-                  />
-                }
+                leftIcon="envelope"
                 />
-              <Input
+              <InputWithIcon
                 label={translationState.translate("Password")}
                 placeholder='Password'
+                secureTextEntry={true}
                 onChangeText={handleChange('password')}
                 onBlur={handleBlur('password')}
                 value={values.password}
                 errorMessage={errors.password}
-                leftIcon={
-                  <Icon
-                    name="lock"
-                    size={24}
-                    color="#86939e"
-                  />
-                }
+                leftIcon="lock"
                 containerStyle={styles.gapContainer}
               />
               <Button
@@ -72,6 +61,7 @@ const Login: () => React$Node = ({translationState, onRegisterPageCall}) => {
       <View style={styles.miscContainer}>
         <Button
           title={translationState.translate("Forgot Password")}
+          onPress={onForgotPasswordCall}
           type="clear"
         />
       </View>

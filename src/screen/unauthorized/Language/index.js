@@ -50,8 +50,8 @@ const Language: () => React$Node = (props) => {
 const languageStyles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
-    paddingTop: 10
+    justifyContent: "flex-start",
+    paddingTop: 10,
   },
   itemContainer: {
     flex: 1,

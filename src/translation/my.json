@@ -24,13 +24,21 @@
   "TypeaMessage":"Taip di sini...",
   "Your email address": "Email address anda",
   "Password": "Kata Laluan",
-  "Register": "Daftar",
+  "Register": "Tiada account? Daftar sekarang",
   "Forgot Password": "Lupa Kata Laluan",
   "Retype Password": "Kata Laluan Sekali",
   "Required": "Perlu diisi",
   "Invalid email address": "Invalid email address",
   "Too short": "Tidak mencukupi",
   "Too long": "Terlebih",
-  "Passwords must match": "Kata Laluan tidak mancis"
+  "Passwords must match": "Kata Laluan tidak mancis",
+  "Send email": "Hantar email",
 
+  "auth/email-sent" : "Reset email telah dihantar",
+  "auth/wrong-password": "Kata Laluan tidak tepat.",
+  "auth/success": "Email verification telah dihantar ke mailbox anda.",
+  "auth/appError": "App issue, kontak Administrator.",
+  "auth/tryagainlater": "Network issue, cuba sebentar nanti.",
+  "auth/email-already-in-use": "Email telah digunakan.",
+  "auth/user-not-found": "Tiada account sebegini"
 }

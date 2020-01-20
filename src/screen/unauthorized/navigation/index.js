@@ -2,6 +2,7 @@ import React from 'react';
 import { fromRight } from 'react-navigation-transitions';
 import { createStackNavigator } from 'react-navigation-stack';
 import LoginScreen from "../LoginScreen";
+import ForgotPassword from "../LoginScreen/ForgotPassword";
 import LearnMore from "../LearnMore";
 import OpenScreen from "../OpenScreen";
 import Language from "../Language";
@@ -22,6 +23,13 @@ function generateNavigationScreen() {
       screen: LoginScreen,
       navigationOptions: {
         title: translate("Login"),
+        ...APPBAR
+      }
+    },
+    ForgotPassword: {
+      screen: ForgotPassword,
+      navigationOptions: {
+        title: translate("Forgot Password"),
         ...APPBAR
       }
     },

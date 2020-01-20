@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Walcron Pda</string>
+    <string name="app_name">Walcron</string>
     <string name="PUSHER_APP_KEY">f296b2c26f59e775436f</string>
     <string name="PUSHER_CLUSTER">ap1</string>
     <string name="PUSHER_EVENT_NAME">walcron_evt_push</string>

@@ -24,12 +24,21 @@
   "TypeaMessage": "Type a message...",
   "Your email address": "Your email address",
   "Password": "Password",
-  "Register": "Register",
+  "Register": "No existing account? Register now",
   "Forgot Password": "Forgot Password",
   "Retype Password": "Retype Password",
   "Required": "Required",
   "Invalid email address": "Invalid email address",
   "Too short": "Too short",
   "Too long": "Too long",
-  "Passwords must match": "Passwords must match"
+  "Passwords must match": "Passwords must match",
+  "Send email": "Send email",
+
+  "auth/email-sent" : "Reset email sent",
+  "auth/success": "Successfully created. A verification mail has been send to your inbox.",
+  "auth/wrong-password": "Invalid password",
+  "auth/appError": "App issue, contact Administrator.",
+  "auth/tryagainlater": "Network issue, try again later",
+  "auth/email-already-in-use": "Email already in use",
+  "auth/user-not-found": "User not found"
 }
