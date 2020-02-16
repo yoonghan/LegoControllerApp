@@ -1,5 +1,6 @@
 import * as ActionTypes from "../action/ActionTypes";
 import AsyncStorage from '@react-native-community/async-storage';
+import auth from '@react-native-firebase/auth';
 
 const LOGIN_KEY="@LoginKey";
 const LOGIN_USERNAME = "@LoginUsername";
@@ -44,7 +45,6 @@ export const checkLogin = async (next) => {
   }
   catch(e) {
     //Do nothing, failing.
-
   }
 
   next({
@@ -55,13 +55,15 @@ export const checkLogin = async (next) => {
 
 export const removeLogin = async (next) => {
   try {
+    await auth().signOut();
     await AsyncStorage.removeItem(LOGIN_KEY);
     await AsyncStorage.removeItem(LOGIN_USERNAME);
     await AsyncStorage.removeItem(LOGIN_TOKEN);
     next({
       type: ActionTypes.LOGGED_OUT_SUCCESS
     });
-  } catch (e) {
+  }
+  catch(e) {
     next({
       type: ActionTypes.LOGGED_OUT_FAILURE
     });

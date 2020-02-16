@@ -7,8 +7,10 @@ import {
   StyleSheet
 }
 from 'react-native';
+import { Alert } from "react-native";
 import {connect} from "react-redux";
 import {compose} from "redux";
+import auth from '@react-native-firebase/auth';
 import Frame from "../../../component/Frame";
 import { styles } from "../../../util/style";
 import { translate } from "../../../util/tools";
@@ -21,7 +23,22 @@ const onPressAction = (navigation, key) => () => {
     navigation.navigate(key);
 }
 
+const logout = (logoutFunc) => () => {
+  logoutFunc();
+}
+
 const Setting: () => React$Node = (props) => {
+  if (props.loginState.error) {
+    Alert.alert(
+      translate("Error"),
+      translate("Logout failed"),
+      [
+        {text: translate("OK")}
+      ],
+      {cancelable: false}
+    );
+  }
+
   return (
     <View style={settingsStyles.container}>
     {
@@ -41,7 +58,7 @@ const Setting: () => React$Node = (props) => {
                 title={ translatedTitle }
                 leftIcon={{ name: item.icon, type:"font-awesome", color: '#CC5555' }}
                 bottomDivider
-                onPress={ props.logout }
+                onPress={ logout(props.logout) }
                 titleStyle={{ color: '#CC5555', fontWeight: 'bold' }}
               />
             );

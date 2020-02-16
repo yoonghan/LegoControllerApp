@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { NativeModules } from 'react-native';
-import Messenger from "../native/android/Messenger";
+import Messenger from "../native/Messenger";
 
 const MESSENGER_MESSAGE_EVENT = "onMessengerEvent";
 const MESSENGER_CONNECT_EVENT = "onMessengerConnectEvent";

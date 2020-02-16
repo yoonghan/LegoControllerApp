@@ -3,7 +3,7 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 import { Formik } from "formik";
 import { Button } from "react-native-elements";
-import { View, StyleSheet, Modal, Alert } from "react-native";
+import { View, StyleSheet, Modal } from "react-native";
 import * as TranslationAction from "../../../redux/action/TranslationAction";
 import { RegisterSchema } from "../../../util/schemaValidator";
 import auth from '@react-native-firebase/auth';
@@ -11,6 +11,8 @@ import { translate } from "../../../util/tools";
 import InputWithIcon from "../../../component/InputWithIcon";
 
 const Register: () => React$Node = ({translationState, onLoginPageCall, registerCallback}) => {
+  const [focusIdx, setFocusIdx] = React.useState(0);
+
   return (
     <View>
       <View style={styles.inputContainer}>
@@ -20,6 +22,7 @@ const Register: () => React$Node = ({translationState, onLoginPageCall, register
           initialValues={{ email: "", password: "", retypePassword: ""}}
           validationSchema={ RegisterSchema }
           onSubmit={(values, {setFieldValue}) => {
+            setFocusIdx(0);
             registerCallback(values.email, values.password)
             .catch(e =>{
               console.log("Exception")
@@ -40,6 +43,10 @@ const Register: () => React$Node = ({translationState, onLoginPageCall, register
                 value={values.email}
                 errorMessage={errors.email}
                 leftIcon="envelope"
+                keyboardType={"email-address"}
+                returnKeyType = { "next" }
+                onSubmitEditing={() => { setFocusIdx(1) }}
+                blurOnSubmit={false}
                 />
               <InputWithIcon
                 label={translationState.translate("Password")}
@@ -51,6 +58,10 @@ const Register: () => React$Node = ({translationState, onLoginPageCall, register
                 secureTextEntry={true}
                 leftIcon="lock"
                 containerStyle={styles.gapContainer}
+                focus={focusIdx === 1}
+                returnKeyType = { "next" }
+                onSubmitEditing={() => { setFocusIdx(2) }}
+                blurOnSubmit={false}
                 />
               <InputWithIcon
                 label={translationState.translate("Retype Password")}
@@ -62,6 +73,9 @@ const Register: () => React$Node = ({translationState, onLoginPageCall, register
                 secureTextEntry={true}
                 leftIcon="lock"
                 containerStyle={styles.gapContainer}
+                focus={focusIdx === 2}
+                onSubmitEditing={() => { setFocusIdx(3) }}
+                blurOnSubmit={true}
                 />
               <Button
                 title="Register"

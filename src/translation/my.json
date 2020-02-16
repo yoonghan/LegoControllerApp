@@ -33,6 +33,12 @@
   "Too long": "Terlebih",
   "Passwords must match": "Kata Laluan tidak mancis",
   "Send email": "Hantar email",
+  "Error": "Gagal",
+  "OK": "Faham",
+  "Success": "Berjaya",
+  "Use Biometric": "Guna sistem biometric",
+  "Logout failed": "Gagal untuk keluar.",
+  "Check your mailbox": "Sila periksa mailbox anda.",
 
   "auth/email-sent" : "Reset email telah dihantar",
   "auth/wrong-password": "Kata Laluan tidak tepat.",
@@ -40,5 +46,14 @@
   "auth/appError": "App issue, kontak Administrator.",
   "auth/tryagainlater": "Network issue, cuba sebentar nanti.",
   "auth/email-already-in-use": "Email telah digunakan.",
-  "auth/user-not-found": "Tiada account sebegini"
+  "auth/user-not-found": "Tiada account sebegini",
+  "unauthorized": {
+    "instruction": {
+      "Welcome": "Horas",
+      "You are logged in": "Kamu telah dilogin!",
+      "One more step": "Satu langkah lagi",
+      "instruction1": "Dari sini, akses biometric diperlukan untuk menggunakan aplikasi ini.",
+      "instruction2": "Model bimbit anda mungkin menggunakkan akses pin atau facial recognition."
+    }
+  }
 }

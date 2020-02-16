@@ -13,27 +13,28 @@ import * as TranslationAction from "../../redux/action/TranslationAction";
 import * as LoginAction from "../../redux/action/LoginAction";
 import {getImageSource} from "../../util/source";
 import { Button } from 'react-native-elements';
-import BiometricAccess from "../../native/android/BiometricAccess";
 import { VERSION } from "../../util/const";
+import auth from '@react-native-firebase/auth';
+import BiometricAccess from "../../native/BiometricAccess";
 
-// _buttonPressLogin = ({login, translationState}) => async () => {
-//   try {
-//     const result = await BiometricAccess.showBiometricPrompt({
-//       title: translationState.translate("Login_Bio_Title"),
-//       subTitle: translationState.translate("Login_Bio_SubTitle"),
-//       cancel: translationState.translate("Login_Bio_Cancel")
-//     });
-//     if(result && result.success) {
-//       login(
-//          "Anonymous",
-//          "101001010101",
-//       );
-//     };
-//   }
-//   catch (e) {
-//     console.warn(`Cancelled - ${e}`);
-//   }
-// }
+_buttonPressScanBiometric = (login, translationState) => async () => {
+  try {
+    const result = await BiometricAccess.showBiometricPrompt({
+      title: translationState.translate("Login_Bio_Title"),
+      subTitle: translationState.translate("Login_Bio_SubTitle"),
+      cancel: translationState.translate("Login_Bio_Cancel")
+    });
+    if(result && result.success) {
+      login(
+         "Anonymous",
+         "101001010101",
+      );
+    };
+  }
+  catch (e) {
+    console.warn(`Cancelled - ${e}`);
+  }
+}
 
 _buttonPressLogin = (navigation) => () => {
   navigation.navigate('LoginScreen');
@@ -47,7 +48,53 @@ _buttonPressLanguage = (navigation) => () => {
   navigation.navigate('Language');
 }
 
-const OpenScreen: () => React$Node = ({translationState, navigation}) => {
+const _renderLoginButton = (isLoggedIn, translationState, login, navigation) => {
+  if(isLoggedIn) {
+    return <Button
+      title={translationState.translate("Use Biometric")}
+      onPress={_buttonPressScanBiometric(login, translationState)}
+      />
+  }
+  else {
+    return <Button
+      title={translationState.translate("Enter")}
+      onPress={_buttonPressLogin(navigation)}
+      />
+  }
+}
+
+const _renderSecondButton = (isLoggedIn, logout, navigation, translationState) => {
+  if(isLoggedIn) {
+    return <Button
+      title={translationState.translate("Logout")}
+      type={"outline"}
+      onPress={logout}
+    />
+  }
+  else {
+    return <Button
+      title={translationState.translate("Learn More")}
+      type={"outline"}
+      onPress={this._buttonPressLearnMore(navigation)}
+    />
+  }
+}
+
+const OpenScreen: () => React$Node = ({translationState, login, logout, navigation}) => {
+
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+
+  React.useEffect(() => {
+    auth().onAuthStateChanged((user) => {
+      if (user && !isLoggedIn) {
+        setIsLoggedIn(true);
+      }
+      else {
+        setIsLoggedIn(false);
+      }
+   });
+  }, []);
+
   return (
     <SafeAreaView style={styles.mainContainer}>
       <ImageBackground
@@ -56,19 +103,12 @@ const OpenScreen: () => React$Node = ({translationState, navigation}) => {
         <View style={styles.container}>
           <View
             style={styles.buttonContainer}>
-            <Button
-              title={translationState.translate("Enter")}
-              onPress={this._buttonPressLogin(navigation)}
-              />
+            {_renderLoginButton(isLoggedIn, translationState, login, navigation)}
           </View>
           <View
             style={styles.learnmoreContainer}
           >
-            <Button
-              title={translationState.translate("Learn More")}
-              type={"outline"}
-              onPress={this._buttonPressLearnMore(navigation)}
-            />
+            {_renderSecondButton(isLoggedIn, logout, navigation, translationState)}
           </View>
           <View
             style={styles.languageContainer}>

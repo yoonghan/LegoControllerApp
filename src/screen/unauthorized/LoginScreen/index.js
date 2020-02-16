@@ -32,25 +32,39 @@ const enumLoading = {
   INIT: 5
 }
 
-const login = (setLoadingFunc) => async (email, password) => {
+const login = (navigation, setLoadingFunc) => async (email, password) => {
   setLoadingFunc(enumLoading.LOGININ);
-
   auth()
-  .signInWithEmailAndPassword(email, password)
-  .then(user => {
-    setLoadingFunc(enumLoading.LOGGEDIN);
-  })
-  .catch(e => {
-    setLoadingFunc(enumLoading.ERROR);
-    Alert.alert(
-      "Error",
-      filterTranslateError(e.code),
-      [
-        {text: "OK"}
-      ],
-      {cancelable: false}
-    );
-  });
+    .signInWithEmailAndPassword(email, password)
+    .then(user => {
+      if(user.emailVerified) {
+        setLoadingFunc(enumLoading.LOGGEDIN);
+        navigation.replace("InstructionFirstLogin");
+      }
+      else {
+        setLoadingFunc(enumLoading.ERROR);
+        auth().signOut();
+        Alert.alert(
+          translate("Error"),
+          translate("Check your mailbox"),
+          [
+            {text: translate("OK")}
+          ],
+          {cancelable: false}
+        );
+      }
+    })
+    .catch(e => {
+      setLoadingFunc(enumLoading.ERROR);
+      Alert.alert(
+        translate("Error"),
+        filterTranslateError(e.code),
+        [
+          {text: translate("OK")}
+        ],
+        {cancelable: false}
+      );
+    });
 }
 
 
@@ -62,19 +76,19 @@ const register = (setLoadingFunc) => async (email, password) => {
     await auth().signOut();
     setLoadingFunc(enumLoading.REGISTERED);
     Alert.alert(
-      "Success",
+      translate("Success"),
       translate("auth/success"),
-      [{ text: "OK"}],
+      [{ text: translate("OK")}],
       {cancelable: false}
     );
   }
   catch (e) {
     setLoadingFunc(enumLoading.ERROR);
     Alert.alert(
-      "Error",
+      translate("Error"),
       filterTranslateError(e.code),
       [
-        {text: "OK"}
+        {text: translate("OK")}
       ],
       {cancelable: false}
     );
@@ -122,13 +136,15 @@ const LoginScreen: () => React$Node = ({navigation}) => {
   return (
     <React.Fragment>
       <Loader loading={isLoading()} color="#333333" />
-      <ScrollView>
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+      >
         <React.Fragment>
           <Swiper ref={swiperRef} style={styles.swiperContainer}>
             <Login
               onForgotPasswordCall={gotoForgotPasswordScreen(navigation)}
               onRegisterPageCall={swipeToRegisterPage}
-              loginCallback={login(setLoading)}
+              loginCallback={login(navigation, setLoading)}
               />
             <Register onLoginPageCall={swipeToLoginPage} registerCallback={register(setLoading)}/>
           </Swiper>

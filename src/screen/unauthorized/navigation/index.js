@@ -6,9 +6,9 @@ import ForgotPassword from "../LoginScreen/ForgotPassword";
 import LearnMore from "../LearnMore";
 import OpenScreen from "../OpenScreen";
 import Language from "../Language";
+import InstructionFirstLogin from "../InstructionFirstLogin";
 import {APPBAR} from "../../../util/style";
 import { translate } from "../../../util/tools";
-
 
 function generateNavigationScreen() {
 
@@ -46,7 +46,13 @@ function generateNavigationScreen() {
         title: translate("Learn More"),
         ...APPBAR
       }
-    }
+    },
+    InstructionFirstLogin: {
+      screen: InstructionFirstLogin,
+      navigationOptions: {
+        header: null
+      }
+    },
   };
 
   return NavigationScreens;

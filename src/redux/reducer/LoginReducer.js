@@ -21,7 +21,8 @@ export type LoginType = {
 const initial = {
   query: false,
   loggedIn: false,
-  info: {}
+  info: {},
+  error: false
 };
 
 const LoginReducer = (state:LoginType = initial, action: ActionType) => {
@@ -34,6 +35,10 @@ const LoginReducer = (state:LoginType = initial, action: ActionType) => {
           info: action.data
       };
     case Actions.LOGGED_IN_FAILURE:
+      return {
+          ...state,
+          error: true
+      };
     case Actions.LOGGED_OUT_SUCCESS:
       return {
           ...state,

@@ -5,9 +5,6 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { CreateScreen } from "../../../component/NavigationBar";
 import { APPBAR } from "../../../util/style";
 
-//Logout Navigation
-import Logout from "../Logout";
-
 //Setting Navigation
 import Setting from "../Setting";
 import Setting_About from "../Setting/About";
@@ -23,13 +20,11 @@ function generateNavigationScreen() {
   const _settingScreen = CreateScreen(Setting, "Settings", true);
   const _settingAboutScreen = CreateScreen(Setting_About, "About", false);
   const _settingLanguageScreen = CreateScreen(Setting_Language, "Language", false);
-  const _settingLogoutScreen = CreateScreen(Logout, "Logout", false);
   const Setting_StackNavigation = createStackNavigator(
     {
       ..._settingScreen,
       ..._settingAboutScreen,
-      ..._settingLanguageScreen,
-      ..._settingLogoutScreen
+      ..._settingLanguageScreen
     },
     {
       transitionConfig: () => fromRight(),

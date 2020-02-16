@@ -9,6 +9,9 @@ import * as TranslationAction from "../../../redux/action/TranslationAction";
 import { LoginSchema } from "../../../util/schemaValidator";
 
 const Login: () => React$Node = ({translationState, onRegisterPageCall, loginCallback, onForgotPasswordCall}) => {
+
+  const [focusIdx, setFocusIdx] = React.useState(0);
+
   return (
     <View>
       <View style={styles.inputContainer}>
@@ -18,6 +21,7 @@ const Login: () => React$Node = ({translationState, onRegisterPageCall, loginCal
           initialValues={{ email: '', password: ''}}
           validationSchema={ LoginSchema }
           onSubmit={(values, {setFieldValue}) => {
+            setFocusIdx(0);
             loginCallback(values.email, values.password);
           }}
           >
@@ -31,6 +35,10 @@ const Login: () => React$Node = ({translationState, onRegisterPageCall, loginCal
                 value={values.email}
                 errorMessage={errors.email}
                 leftIcon="envelope"
+                keyboardType={"email-address"}
+                returnKeyType = { "next" }
+                onSubmitEditing={() => { setFocusIdx(1) }}
+                blurOnSubmit={false}
                 />
               <InputWithIcon
                 label={translationState.translate("Password")}
@@ -42,6 +50,9 @@ const Login: () => React$Node = ({translationState, onRegisterPageCall, loginCal
                 errorMessage={errors.password}
                 leftIcon="lock"
                 containerStyle={styles.gapContainer}
+                focus={focusIdx === 1}
+                onSubmitEditing={() => { setFocusIdx(2) }}
+                blurOnSubmit={true}
               />
               <Button
                 title={translationState.translate("Login")}

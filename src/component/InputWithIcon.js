@@ -4,8 +4,16 @@ import Icon from "react-native-vector-icons/FontAwesome";
 
 const InputWithIcon: () => React$Node = (props) => {
   const {leftIcon, ...otherProps} = props;
+  const inputRef = React.useRef(null);
+
+  if(props.focus) {
+    if(inputRef.current !== null && !inputRef.current.isFocused())
+      inputRef.current.focus()
+  }
+
   return (
     <Input
+      ref={inputRef}
       {...otherProps}
       leftIcon={
         <Icon

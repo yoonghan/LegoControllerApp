@@ -33,6 +33,12 @@
   "Too long": "Too long",
   "Passwords must match": "Passwords must match",
   "Send email": "Send email",
+  "Error": "Error",
+  "OK": "OK",
+  "Success": "Success",
+  "Use Biometric": "Use Biometric",
+  "Logout failed": "Logout failed.",
+  "Check your mailbox": "Check your mailbox for verification.",
 
   "auth/email-sent" : "Reset email sent",
   "auth/success": "Successfully created. A verification mail has been send to your inbox.",
@@ -40,5 +46,14 @@
   "auth/appError": "App issue, contact Administrator.",
   "auth/tryagainlater": "Network issue, try again later",
   "auth/email-already-in-use": "Email already in use",
-  "auth/user-not-found": "User not found"
+  "auth/user-not-found": "User not found",
+  "unauthorized": {
+    "instruction": {
+      "Welcome": "Welcome",
+      "You are logged in": "You are logged in!",
+      "One more step": "One more step",
+      "instruction1": "From now on, any accesses to your personal data will require you to login via Biometrics.",
+      "instruction2": "Depending on your phone, it may be pin or facial recognition."
+    }
+  }
 }
