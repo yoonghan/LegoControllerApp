@@ -47,6 +47,7 @@
   "auth/tryagainlater": "Network issue, cuba sebentar nanti.",
   "auth/email-already-in-use": "Email telah digunakan.",
   "auth/user-not-found": "Tiada account sebegini",
+  "auth/unknown": "Periksa internet anda atau restart aplikasi ini",
   "unauthorized": {
     "instruction": {
       "Welcome": "Horas",

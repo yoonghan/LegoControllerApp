@@ -19,6 +19,10 @@ const enumStatus = {
   DISCONNECTED: 6
 }
 
+const urlPattern = /^((http|https):\/\/)/;
+const imagePattern = /((.jpg|.png|.jpeg)\?)/;
+var tempFixForAllMessages = [];
+
 const LegoController = ({translationState, tokenApi, messenger}) => {
   const [messages, setMessages] = useState(
     [
@@ -30,16 +34,14 @@ const LegoController = ({translationState, tokenApi, messenger}) => {
       }
     ]
   );
-  const [counter, setCounter] = useState(0);
   const [connectionStatus, changeConnectionStatus] = React.useState(enumStatus.NULL);
   const [tokenCodegenAsChannelId, changeTokenCodeGen] = React.useState("");
 
   function updateMessage(message, isSystemMessage) {
-    const updatedCounter = counter + 1;
     let messageGift = {};
     if(isSystemMessage) {
       messageGift = {
-        _id: `s_${updatedCounter}`,
+        _id: `s_${new Date().getTime()}`,
         text: message,
         createdAt: new Date(),
         system: true,
@@ -50,26 +52,32 @@ const LegoController = ({translationState, tokenApi, messenger}) => {
     }
     else {
       messageGift = {
-        _id: `u_${updatedCounter}`,
-        text: message,
+        _id: `u_${new Date().getTime()}`,
         createdAt: new Date(),
         user: {
           _id: 2,
           name: "O"
         }
       };
+      if(urlPattern.test(message) && imagePattern.test(message)) {
+        messageGift["image"] = message;
+      }
+      else {
+        messageGift["text"] = message;
+      }
     }
 
     const updatedMessages = [messageGift];
-    setMessages(GiftedChat.append(messages, updatedMessages));
-    setCounter(updatedCounter);
+    const result = GiftedChat.append(tempFixForAllMessages, updatedMessages);
+    setMessages(result);
   }
 
 
   function updateSentMessage(message) {
     const {send} = messenger;
     if(send(message[0].text)) {
-      setMessages(GiftedChat.append(messages, message));
+      const result = GiftedChat.append(messages, message);
+      setMessages(result);
     }
     else {
       updateMessage("Message sent failed!", true);
@@ -112,16 +120,21 @@ const LegoController = ({translationState, tokenApi, messenger}) => {
     }
   }
 
-  function onEventReceived(event) {
+  const onEventReceived = (event) => {
     const {message} = event;
     updateMessage(JSON.parse(message).message);
   }
 
-  function getToken(tokenApi) {
+  const getToken = (tokenApi) => {
     if(!tokenApi.isLoading) {
       tokenApi.connect(undefined, "Unable to get key", 'GET');
     }
   }
+
+  React.useEffect(() => {
+    //BUG FIX, this is because of _addEventListener, it takes from old messages
+    tempFixForAllMessages = messages;
+  }, [messages]);
 
   React.useEffect(() => {
     if(!tokenApi.isLoading && Object.keys(tokenApi.success).length !== 0) {

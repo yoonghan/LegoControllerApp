@@ -13,8 +13,8 @@ export const legoControllerMiddleware = store => next => action => {
     case ActionTypes.LOG_OUT:
       LoginMiddleware.removeLogin(next);
       break;
-    case ActionTypes.LOG_OUT:
-      LoginMiddleware.removeLogin(next);
+    case ActionTypes.SIGN_OFF:
+      LoginMiddleware.clearLoginTrace(next);
       break;
     case ActionTypes.TRANSLATION_REQUEST:
       TranslationMiddleware.checkStatus(next);

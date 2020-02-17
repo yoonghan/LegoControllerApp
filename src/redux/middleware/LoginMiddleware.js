@@ -53,20 +53,41 @@ export const checkLogin = async (next) => {
   });
 }
 
-export const removeLogin = async (next) => {
+export const clearLoginTrace = async (next) => {
   try {
+    await removeLogin(next, true);
     await auth().signOut();
-    await AsyncStorage.removeItem(LOGIN_KEY);
-    await AsyncStorage.removeItem(LOGIN_USERNAME);
-    await AsyncStorage.removeItem(LOGIN_TOKEN);
     next({
-      type: ActionTypes.LOGGED_OUT_SUCCESS
+      type: ActionTypes.SIGN_OFF_SUCCESS
     });
   }
   catch(e) {
     next({
-      type: ActionTypes.LOGGED_OUT_FAILURE
+      type: ActionTypes.SIGN_OFF_FAILURE
     });
+  }
+}
+
+export const removeLogin = async (next, shouldNotReturnAction) => {
+  try {
+    await AsyncStorage.removeItem(LOGIN_KEY);
+    await AsyncStorage.removeItem(LOGIN_USERNAME);
+    await AsyncStorage.removeItem(LOGIN_TOKEN);
+    if(!shouldNotReturnAction) {
+      next({
+        type: ActionTypes.LOGGED_OUT_SUCCESS
+      });
+    }
+  }
+  catch(e) {
+    if(!shouldNotReturnAction) {
+      next({
+        type: ActionTypes.LOGGED_OUT_FAILURE
+      });
+    }
+    else {
+      throw Exception("Unable to logout");
+    }
   }
 }
 

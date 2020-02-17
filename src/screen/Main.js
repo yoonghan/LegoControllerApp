@@ -45,7 +45,7 @@ class Main extends PureComponent<Props> {
 
   _handleAppStateChange = (nextAppState) => {
     if(this._isLoggedIn() && this._isGettingThrownToBackground(nextAppState)) {
-        this.props.logout();
+      this.props.logout();
     }
   };
 

@@ -23,10 +23,6 @@ const onPressAction = (navigation, key) => () => {
     navigation.navigate(key);
 }
 
-const logout = (logoutFunc) => () => {
-  logoutFunc();
-}
-
 const Setting: () => React$Node = (props) => {
   if (props.loginState.error) {
     Alert.alert(
@@ -58,7 +54,7 @@ const Setting: () => React$Node = (props) => {
                 title={ translatedTitle }
                 leftIcon={{ name: item.icon, type:"font-awesome", color: '#CC5555' }}
                 bottomDivider
-                onPress={ logout(props.logout) }
+                onPress={ props.signoff }
                 titleStyle={{ color: '#CC5555', fontWeight: 'bold' }}
               />
             );

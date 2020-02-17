@@ -39,7 +39,7 @@ const Register: () => React$Node = ({translationState, onLoginPageCall, register
                 label={translationState.translate("Your email address")}
                 placeholder="email@address.com"
                 onChangeText={handleChange('email')}
-                onBlur={handleBlur('email')}
+                onBlur={()=>{setFocusIdx(0);handleBlur('email')}}
                 value={values.email}
                 errorMessage={errors.email}
                 leftIcon="envelope"
@@ -52,7 +52,7 @@ const Register: () => React$Node = ({translationState, onLoginPageCall, register
                 label={translationState.translate("Password")}
                 placeholder='Password'
                 onChangeText={handleChange('password')}
-                onBlur={handleBlur('password')}
+                onBlur={()=>{setFocusIdx(0);handleBlur('password')}}
                 value={values.password}
                 errorMessage={errors.password}
                 secureTextEntry={true}
@@ -67,7 +67,7 @@ const Register: () => React$Node = ({translationState, onLoginPageCall, register
                 label={translationState.translate("Retype Password")}
                 placeholder='Password'
                 onChangeText={handleChange('retypePassword')}
-                onBlur={handleBlur('retypePassword')}
+                onBlur={()=>{setFocusIdx(0);handleBlur('retypePassword')}}
                 value={values.retypePassword}
                 errorMessage={errors.retypePassword}
                 secureTextEntry={true}

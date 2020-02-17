@@ -18,6 +18,8 @@ const filterTranslateError = (errorMessage) => {
       return translate("auth/email-already-in-use");
     case "auth/user-not-found":
       return translate("auth/user-not-found");
+    case "auth/unknown":
+      return translate("auth/unknown");
     default:
       return translate("auth/appError");
   }
@@ -36,8 +38,8 @@ const login = (navigation, setLoadingFunc) => async (email, password) => {
   setLoadingFunc(enumLoading.LOGININ);
   auth()
     .signInWithEmailAndPassword(email, password)
-    .then(user => {
-      if(user.emailVerified) {
+    .then(result => {
+      if(result.user.emailVerified) {
         setLoadingFunc(enumLoading.LOGGEDIN);
         navigation.replace("InstructionFirstLogin");
       }

@@ -26,7 +26,11 @@ export const login = (param: LoginInfoType) => {
 export const logout = ({
   action: ActionTypes.LOG_OUT
 })
-;
+
+export const signoff = ({
+  action: ActionTypes.SIGN_OFF
+})
+
 export const load = ({
   action: ActionTypes.LOG_IN_REQUEST
 })
@@ -37,6 +41,9 @@ export const mapDispatchToProps = (dispatch: any):LoginActionType => ({
   },
   logout: () => {
     dispatch(logout)
+  },
+  signoff: () => {
+    dispatch(signoff)
   },
   loginLoad: () => {
     dispatch(load)

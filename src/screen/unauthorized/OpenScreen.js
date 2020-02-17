@@ -63,12 +63,12 @@ const _renderLoginButton = (isLoggedIn, translationState, login, navigation) => 
   }
 }
 
-const _renderSecondButton = (isLoggedIn, logout, navigation, translationState) => {
+const _renderSecondButton = (isLoggedIn, signoff, navigation, translationState) => {
   if(isLoggedIn) {
     return <Button
       title={translationState.translate("Logout")}
       type={"outline"}
-      onPress={logout}
+      onPress={signoff}
     />
   }
   else {
@@ -80,7 +80,7 @@ const _renderSecondButton = (isLoggedIn, logout, navigation, translationState) =
   }
 }
 
-const OpenScreen: () => React$Node = ({translationState, login, logout, navigation}) => {
+const OpenScreen: () => React$Node = ({translationState, login, signoff, navigation}) => {
 
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
@@ -108,7 +108,7 @@ const OpenScreen: () => React$Node = ({translationState, login, logout, navigati
           <View
             style={styles.learnmoreContainer}
           >
-            {_renderSecondButton(isLoggedIn, logout, navigation, translationState)}
+            {_renderSecondButton(isLoggedIn, signoff, navigation, translationState)}
           </View>
           <View
             style={styles.languageContainer}>

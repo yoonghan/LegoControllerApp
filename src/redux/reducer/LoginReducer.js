@@ -34,11 +34,13 @@ const LoginReducer = (state:LoginType = initial, action: ActionType) => {
           loggedIn: true,
           info: action.data
       };
+    case Actions.SIGN_OFF_FAILURE:
     case Actions.LOGGED_IN_FAILURE:
       return {
           ...state,
           error: true
       };
+    case Actions.SIGN_OFF_SUCCESS:
     case Actions.LOGGED_OUT_SUCCESS:
       return {
           ...state,

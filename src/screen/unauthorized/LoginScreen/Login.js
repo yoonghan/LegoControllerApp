@@ -31,7 +31,7 @@ const Login: () => React$Node = ({translationState, onRegisterPageCall, loginCal
                 label={translationState.translate("Your email address")}
                 placeholder="email@address.com"
                 onChangeText={handleChange('email')}
-                onBlur={handleBlur('email')}
+                onBlur={()=>{setFocusIdx(0);handleBlur('email')}}
                 value={values.email}
                 errorMessage={errors.email}
                 leftIcon="envelope"
@@ -45,7 +45,7 @@ const Login: () => React$Node = ({translationState, onRegisterPageCall, loginCal
                 placeholder='Password'
                 secureTextEntry={true}
                 onChangeText={handleChange('password')}
-                onBlur={handleBlur('password')}
+                onBlur={()=>{setFocusIdx(0);handleBlur('password')}}
                 value={values.password}
                 errorMessage={errors.password}
                 leftIcon="lock"
