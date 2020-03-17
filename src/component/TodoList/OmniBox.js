@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { TextInput } from 'react-native';
 import TodoModel from './TodoModel';
-import Utils from './Utils';
+import { findTodo, move } from './Utils';
 
 class OmniBox extends Component {
   constructor(props) {
@@ -21,14 +21,14 @@ class OmniBox extends Component {
     this.props.updateDataList(dataList);
   }
 
-  onKeyPress = (event) => {
-    if (event.nativeEvent.key == 'Enter' && this.state.newValue) {
+  onSubmitEditing = () => {
+    if (this.state.newValue) {
       var newDataItem = new TodoModel(this.state.newValue);
 
       var dataList = this.props.data;
-      var dataItem = Utils.findTodo(newDataItem, dataList);
+      var dataItem = findTodo(newDataItem, dataList);
       if(dataItem) {
-        Utils.move(dataList, (dataList.indexOf(dataItem)), 0);
+        move(dataList, (dataList.indexOf(dataItem)), 0);
 
         this.setState({
           newValue: ''
@@ -50,9 +50,10 @@ class OmniBox extends Component {
     return (
       <TextInput style={{height: 36, padding: 4, marginBottom: 0, fontSize: 16, borderWidth: 1, borderColor: '#eee', borderRadius: 8, backgroundColor: '#fff'}}
         placeholder='Add a todo or Search'
-        blurOnSubmit={false}
+        blurOnSubmit={true}
         value={this.state.newValue}
-        onKeyPress={this.onKeyPress}
+        onSubmitEditing={this.onSubmitEditing}
+        returnKeyType="done"
         onChange={this.onChange}>
       </TextInput>
     );

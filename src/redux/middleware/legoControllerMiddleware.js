@@ -1,6 +1,7 @@
 import * as ActionTypes from "../action/ActionTypes";
 import * as LoginMiddleware from "./LoginMiddleware";
 import * as TranslationMiddleware from "./TranslationMiddleware";
+import * as TodoMiddleware from "./TodoMiddleware";
 
 export const legoControllerMiddleware = store => next => action => {
   switch(action.action) {
@@ -24,6 +25,15 @@ export const legoControllerMiddleware = store => next => action => {
       break;
     case ActionTypes.TRANSLATION_CHANGE:
       TranslationMiddleware.changeLanguage(action.param)(next);
+      break;
+    case ActionTypes.TODO_EXTRACT:
+      TodoMiddleware.extract(next);
+      break;
+    case ActionTypes.TODO_STORE:
+      TodoMiddleware.storeTodo(action.param)(next);
+      break;
+    case ActionTypes.TODO_REMOVE:
+      TodoMiddleware.deleteTodo(action.param)(next);
       break;
     default:
       next(action);

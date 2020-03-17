@@ -31,6 +31,7 @@ const withMessenger = (WrappedComponent) => {
 
     _addConnectionListener = (eventCallback, connectionCallback) => {
       this._messengerEmitter.addListener(MESSENGER_CONNECT_EVENT, (event) => {
+
         const {status} = event;
         switch(status) {
           case "CONNECTED":
