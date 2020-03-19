@@ -1,12 +1,12 @@
 import React from 'react';
 import { fromRight } from 'react-navigation-transitions';
 import { createStackNavigator } from 'react-navigation-stack';
-import LoginScreen from "../LoginScreen";
-import ForgotPassword from "../LoginScreen/ForgotPassword";
+import ApplicationScreen from "../ApplicationScreen";
 import LearnMore from "../LearnMore";
 import OpenScreen from "../OpenScreen";
 import Language from "../Language";
 import InstructionFirstLogin from "../InstructionFirstLogin";
+import QRCodeScreen from "../QRCodeScreen";
 import {APPBAR} from "../../../util/style";
 import { translate } from "../../../util/tools";
 
@@ -19,17 +19,10 @@ function generateNavigationScreen() {
         header: null
       }
     },
-    LoginScreen: {
-      screen: LoginScreen,
+    ApplicationScreen: {
+      screen: ApplicationScreen,
       navigationOptions: {
-        title: translate("Login"),
-        ...APPBAR
-      }
-    },
-    ForgotPassword: {
-      screen: ForgotPassword,
-      navigationOptions: {
-        title: translate("Forgot Password"),
+        title: translate("Register"),
         ...APPBAR
       }
     },
@@ -53,6 +46,9 @@ function generateNavigationScreen() {
         header: null
       }
     },
+    QRScreen: {
+      screen: QRCodeScreen,
+    }
   };
 
   return NavigationScreens;

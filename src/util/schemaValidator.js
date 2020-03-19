@@ -25,3 +25,15 @@ export const ForgotPasswordSchema = Yup.object().shape({
     .email(translate("Invalid email address"))
     .required(translate("Required"))
 });
+
+export const ApplicationSchema = Yup.object().shape({
+  first_name: Yup.string(),
+  last_name: Yup.string(),
+  mobileno: Yup.number(),
+  address: Yup.string(),
+  postal_code: Yup.number(),
+  company_name: Yup.string(),
+  email: Yup.string()
+    .email(translate("Invalid email address"))
+    .required(translate("Required"))
+});

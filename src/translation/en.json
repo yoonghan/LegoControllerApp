@@ -53,8 +53,30 @@
       "Welcome": "Welcome",
       "You are logged in": "You are logged in!",
       "One more step": "One more step",
-      "instruction1": "From now on, any accesses to your personal data will require you to login via Biometrics.",
-      "instruction2": "Depending on your phone, it may be pin or facial recognition."
+      "OLD_instruction1": "From now on, any accesses to your personal data will require you to login via Biometrics.",
+      "OLD_instruction2": "Depending on your phone, it may be pin or facial recognition.",
+      "instruction1": "Use your QR code and your details will be displayed.",
+      "instruction2": "Depending on your option, different priority will be set."
+    },
+    "applicationScreen": {
+      "First/Given name": "First/Given name",
+      "Last/Surname name": "Last/Surname name",
+      "Email Address": "Email Address",
+      "Address": "Address",
+      "Mobile No": "Mobile No",
+      "Postal Code": "Postal Code",
+      "Company Name": "Company Name",
+      "registered": "Successfully Registered",
+      "success": "Success"
+    },
+    "qrcodescreen": {
+      "type1": "Type 1",
+      "type2": "Type 2",
+      "type3": "Type 3"
+    },
+    "openscreen": {
+      "Get QRCode": "Show QRCode"
     }
-  }
+  },
+  "Register": "Register"
 }

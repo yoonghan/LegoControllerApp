@@ -53,8 +53,23 @@
       "Welcome": "Horas",
       "You are logged in": "Kamu telah dilogin!",
       "One more step": "Satu langkah lagi",
-      "instruction1": "Dari sini, akses biometric diperlukan untuk menggunakan aplikasi ini.",
-      "instruction2": "Model bimbit anda mungkin menggunakkan akses pin atau facial recognition."
-    }
-  }
+      "OLD_instruction1": "Dari sini, akses biometric diperlukan untuk menggunakan aplikasi ini.",
+      "OLD_instruction2": "Model bimbit anda mungkin menggunakkan akses pin atau facial recognition.",
+      "instruction1": "Dari sini, anda boleh mempaparkan QR code informasi anda.",
+      "instruction2": "Berdasarkan option anda, akses lain boleh dikontrol."
+    },
+    "openscreen": {
+      "Get QRCode": "Paparkan QRCode"
+    },
+    "applicationScreen": {
+      "First/Given name": "First/Given nama",
+      "Last/Surname name": "Last/Surname nama",
+      "Email Address": "Email Address",
+      "Address": "Alamat",
+      "Mobile No": "# Telephone Bimbit",
+      "Postal Code": "Postal Code",
+      "Company Name": "Nama Kompeni"
+    },
+  },
+  "Register": "Register"
 }

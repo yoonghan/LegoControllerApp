@@ -11,6 +11,7 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 import * as TranslationAction from "../../redux/action/TranslationAction";
 import * as LoginAction from "../../redux/action/LoginAction";
+import * as QRRegistrationAction from "../../redux/action/QRRegistrationAction";
 import {getImageSource} from "../../util/source";
 import { Button } from 'react-native-elements';
 import { VERSION } from "../../util/const";
@@ -37,7 +38,11 @@ _buttonPressScanBiometric = (login, translationState) => async () => {
 }
 
 _buttonPressLogin = (navigation) => () => {
-  navigation.navigate('LoginScreen');
+  navigation.navigate('ApplicationScreen');
+}
+
+_buttonQRPressed = (navigation) => () => {
+  navigation.navigate('QRScreen');
 }
 
 _buttonPressLearnMore = (navigation) => () => {
@@ -48,12 +53,18 @@ _buttonPressLanguage = (navigation) => () => {
   navigation.navigate('Language');
 }
 
-const _renderLoginButton = (isLoggedIn, translationState, login, navigation) => {
-  if(isLoggedIn) {
-    return <Button
-      title={translationState.translate("Use Biometric")}
-      onPress={_buttonPressScanBiometric(login, translationState)}
-      />
+const _renderLoginButton = (isLoggedIn, translationState, login, navigation, qrState) => {
+  // if(isLoggedIn) {
+  //   return <Button
+  //     title={translationState.translate("Use Biometric")}
+  //     onPress={_buttonPressScanBiometric(login, translationState)}
+  //     />
+  // }
+  if(qrState.registered) {
+      return <Button
+        title={translationState.translate("unauthorized.openscreen.Get QRCode")}
+        onPress={_buttonQRPressed(navigation)}
+        />
   }
   else {
     return <Button
@@ -75,13 +86,12 @@ const _renderSecondButton = (isLoggedIn, signoff, navigation, translationState) 
     return <Button
       title={translationState.translate("Learn More")}
       type={"outline"}
-      onPress={this._buttonPressLearnMore(navigation)}
+      onPress={_buttonPressLearnMore(navigation)}
     />
   }
 }
 
-const OpenScreen: () => React$Node = ({translationState, login, signoff, navigation}) => {
-
+const OpenScreen: () => React$Node = ({translationState, login, signoff, navigation, qrState}) => {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
   React.useEffect(() => {
@@ -103,7 +113,7 @@ const OpenScreen: () => React$Node = ({translationState, login, signoff, navigat
         <View style={styles.container}>
           <View
             style={styles.buttonContainer}>
-            {_renderLoginButton(isLoggedIn, translationState, login, navigation)}
+            {_renderLoginButton(isLoggedIn, translationState, login, navigation, qrState)}
           </View>
           <View
             style={styles.learnmoreContainer}
@@ -116,7 +126,7 @@ const OpenScreen: () => React$Node = ({translationState, login, signoff, navigat
               title={translationState.translate("Language")}
               containerStyle={styles.languageBtn}
               type={"outline"}
-              onPress={this._buttonPressLanguage(navigation)}
+              onPress={_buttonPressLanguage(navigation)}
             />
           </View>
         </View>
@@ -176,6 +186,7 @@ const styles = StyleSheet.create({
 });
 
 export default compose(
+  connect(QRRegistrationAction.mapStateToProps, QRRegistrationAction.mapDispatchToProps),
   connect(LoginAction.mapStateToProps, LoginAction.mapDispatchToProps),
   connect(TranslationAction.mapStateToProps, TranslationAction.mapDispatchToProps)
 )(OpenScreen);

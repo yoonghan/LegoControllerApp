@@ -27,3 +27,13 @@ Run
 
 ## IDE integration
 1. When using Atom, install "flow-ide" package helps for autosuggest and code check.
+
+## Release
+run
+```
+#deploy to phone
+react-native run-android --variant=release
+#gen with key signed
+$ cd android
+$ ./gradlew bundleRelease
+```

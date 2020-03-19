@@ -8,17 +8,20 @@ import * as LoginAction from "../redux/action/LoginAction";
 import type {LoginStateType, LoginActionType} from "../redux/action/LoginAction";
 import * as TranslationAction from "../redux/action/TranslationAction";
 import type {TranslationStateType, TranslationActionType} from "../redux/action/TranslationAction";
+import * as QRRegistrationAction from "../redux/action/QRRegistrationAction";
+import type {QRRegistrationStateType, QRRegistrationActionType} from "../redux/action/QRRegistrationAction";
 import Loading from "../component/Loading";
 import UnauthorizedMainScreen from "./unauthorized/MainScreen";
 import AuthorizedMainScreen from "./authorized/MainScreen";
 
-type Props = LoginStateType & LoginActionType & TranslationActionType;
+type Props = LoginStateType & LoginActionType & TranslationActionType & QRRegistrationStateType & QRRegistrationActionType;
 
 class Main extends PureComponent<Props> {
 
   constructor(props:Props) {
     super(props);
     //props.loginLoad();
+    props.qrInfoLoad();
     props.translateLoad();
   }
 
@@ -54,10 +57,15 @@ class Main extends PureComponent<Props> {
     return loginState && loginState.query && !loginState.loggedIn;
   }
 
+  _isQrQueried = () => {
+    const {qrState} = this.props;
+    return qrState && qrState.query;
+  }
+
   _determineScreen = () => {
     const {loginState} = this.props;
 
-    if(this._isLogonQueried()) {
+    if(this._isLogonQueried() || this._isQrQueried()) {
       return <Loading/>
     }
     else if(this._isLoggedIn()) {
@@ -74,6 +82,7 @@ class Main extends PureComponent<Props> {
 }
 
 export default compose(
+  connect(QRRegistrationAction.mapStateToProps, QRRegistrationAction.mapDispatchToProps),
   connect(LoginAction.mapStateToProps, LoginAction.mapDispatchToProps),
   connect(TranslationAction.mapStateToProps, TranslationAction.mapDispatchToProps)
 )(Main)

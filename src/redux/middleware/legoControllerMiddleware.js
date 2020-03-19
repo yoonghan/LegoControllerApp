@@ -2,6 +2,7 @@ import * as ActionTypes from "../action/ActionTypes";
 import * as LoginMiddleware from "./LoginMiddleware";
 import * as TranslationMiddleware from "./TranslationMiddleware";
 import * as TodoMiddleware from "./TodoMiddleware";
+import * as QRRegisterMiddleware from "./QRRegisterMiddleware";
 
 export const legoControllerMiddleware = store => next => action => {
   switch(action.action) {
@@ -34,6 +35,12 @@ export const legoControllerMiddleware = store => next => action => {
       break;
     case ActionTypes.TODO_REMOVE:
       TodoMiddleware.deleteTodo(action.param)(next);
+      break;
+    case ActionTypes.QR_REGISTRATION_SAVE:
+      QRRegisterMiddleware.saveQRInfo(action.param)(next);
+      break;
+    case ActionTypes.QR_REGISTRATION_LOAD:
+      QRRegisterMiddleware.checkQrRegistration(next);
       break;
     default:
       next(action);
