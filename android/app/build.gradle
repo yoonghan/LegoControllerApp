@@ -134,6 +134,8 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
+        missingDimensionStrategy 'react-native-camera', 'general'
     }
     splits {
         abi {
@@ -186,6 +188,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-permissions')
     implementation project(':react-native-svg')
     implementation "com.android.volley:volley:1.1.1"
     implementation "com.pusher:pusher-java-client:1.6.0"

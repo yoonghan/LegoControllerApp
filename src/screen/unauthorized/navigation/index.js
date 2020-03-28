@@ -7,6 +7,7 @@ import OpenScreen from "../OpenScreen";
 import Language from "../Language";
 import InstructionFirstLogin from "../InstructionFirstLogin";
 import QRCodeScreen from "../QRCodeScreen";
+import ScanQRScreen from "../ScanQRScreen";
 import {APPBAR} from "../../../util/style";
 import { translate } from "../../../util/tools";
 
@@ -48,6 +49,10 @@ function generateNavigationScreen() {
     },
     QRScreen: {
       screen: QRCodeScreen,
+    }
+    ,
+    ScanQRScreen: {
+      screen: ScanQRScreen,
     }
   };
 

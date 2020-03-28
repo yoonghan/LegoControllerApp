@@ -75,7 +75,8 @@
       "type3": "Type 3"
     },
     "openscreen": {
-      "Get QRCode": "Show QRCode"
+      "Display QRCode": "Display QRCode",
+      "Fill Form": "Fill Form"
     }
   },
   "Register": "Register"

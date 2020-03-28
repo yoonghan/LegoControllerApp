@@ -59,7 +59,8 @@
       "instruction2": "Berdasarkan option anda, akses lain boleh dikontrol."
     },
     "openscreen": {
-      "Get QRCode": "Paparkan QRCode"
+      "Display QRCode": "Paparkan QRCode",
+      "Fill Form": "Isi Form"
     },
     "applicationScreen": {
       "First/Given name": "First/Given nama",

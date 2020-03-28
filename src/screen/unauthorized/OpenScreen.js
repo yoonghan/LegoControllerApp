@@ -45,6 +45,10 @@ _buttonQRPressed = (navigation) => () => {
   navigation.navigate('QRScreen');
 }
 
+_buttonScanQRPressed = (navigation) => () => {
+  navigation.navigate('ScanQRScreen');
+}
+
 _buttonPressLearnMore = (navigation) => () => {
   navigation.navigate('LearnMore');
 }
@@ -61,10 +65,21 @@ const _renderLoginButton = (isLoggedIn, translationState, login, navigation, qrS
   //     />
   // }
   if(qrState.registered) {
-      return <Button
-        title={translationState.translate("unauthorized.openscreen.Get QRCode")}
-        onPress={_buttonQRPressed(navigation)}
-        />
+      return (
+        <View>
+          <Button
+            title={translationState.translate("unauthorized.openscreen.Display QRCode")}
+            onPress={_buttonQRPressed(navigation)}
+            />
+          <View
+            style={styles.btnTopSpacer}
+            />
+          <Button
+            title={translationState.translate("unauthorized.openscreen.Fill Form")}
+            onPress={_buttonScanQRPressed(navigation)}
+            />
+        </View>
+      );
   }
   else {
     return <Button
@@ -160,7 +175,7 @@ const styles = StyleSheet.create({
   },
   learnmoreContainer: {
     position: "absolute",
-    bottom: "30%",
+    bottom: "20%",
     width: "100%",
     padding: 1,
     backgroundColor: "#FFFFFF"
@@ -170,7 +185,7 @@ const styles = StyleSheet.create({
   },
   languageContainer: {
     position: "absolute",
-    bottom: "20%",
+    bottom: "10%",
     width: "100%",
     flex: 1,
     justifyContent: 'center',
@@ -182,6 +197,9 @@ const styles = StyleSheet.create({
     right: 0,
     padding: 10,
     backgroundColor: "rgba(199,199,199,0.5)"
+  },
+  btnTopSpacer: {
+    height: 20
   }
 });
 

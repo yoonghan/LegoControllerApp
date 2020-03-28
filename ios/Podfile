@@ -41,6 +41,9 @@ target 'LegoController' do
 
 
 
+
+  pod 'RNPermissions', :path => '../node_modules/react-native-permissions'
+
   target 'LegoControllerTests' do
     inherit! :search_paths
     # Pods for testing
