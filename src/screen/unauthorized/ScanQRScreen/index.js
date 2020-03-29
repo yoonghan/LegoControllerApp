@@ -1,13 +1,26 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import {compose} from "redux";
+import {connect} from "react-redux";
+import { View, StyleSheet, Text, TouchableOpacity, Linking } from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
+import * as QRRegistrationAction from "../../../redux/action/QRRegistrationAction";
 
 const ScanQRScreen = ({qrState}) => {
 
+  const buildInfo = () => {
+    const {info} = qrState;
+    const infoInJson = JSON.parse(info);
+    const {first_name, last_name, mobileno} = infoInJson;
+    const eName = encodeURI((first_name||"") + (last_name||""));
+    const eMobileNo = encodeURI(mobileno);
+    return `?name=${eName}&mobile_no=${eMobileNo}`;
+  }
+
   const onSuccess = e => {
-    Linking.openURL(e.data).catch(err =>
+    console.warn(buildInfo());
+    Linking.openURL(e.data+buildInfo()).catch(err =>
       console.error('An error occured', err)
     );
   };
@@ -17,9 +30,7 @@ const ScanQRScreen = ({qrState}) => {
         onRead={onSuccess}
         topContent={
           <Text style={styles.centerText}>
-            Go to{' '}
-            <Text style={styles.textBold}>wikipedia.org/wiki/QR_code</Text> on
-            your computer and scan the QR code.
+            Scan and fill in the form
           </Text>
         }
         bottomContent={
@@ -51,4 +62,6 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ScanQRScreen;
+export default compose(
+  connect(QRRegistrationAction.mapStateToProps, QRRegistrationAction.mapDispatchToProps)
+)(ScanQRScreen);
