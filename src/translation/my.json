@@ -1,6 +1,7 @@
 {
   "Learn More": "Ketahui Lebih",
   "Enter": "Masuk",
+  "Enter": "Kemaskini",
   "Getting Started": "Cara Penggunaan",
   "GettingStarted1": "Aplikasi ini perlu diakses menggunakan phone biometric scans, demi menjamin kegunaan funktion \"Remember me\".",
   "GettingStarted2": "Mula dengan:",
@@ -58,19 +59,27 @@
       "instruction1": "Dari sini, anda boleh mempaparkan QR code informasi anda.",
       "instruction2": "Berdasarkan option anda, akses lain boleh dikontrol."
     },
-    "openscreen": {
-      "Display QRCode": "Paparkan QRCode",
-      "Fill Form": "Isi Form"
-    },
     "applicationScreen": {
       "First/Given name": "First/Given nama",
       "Last/Surname name": "Last/Surname nama",
-      "Email Address": "Email Address",
+      "Email Address": "E-mail",
       "Address": "Alamat",
-      "Mobile No": "# Telephone Bimbit",
+      "Mobile No": "Telepon Bimbi",
       "Postal Code": "Postal Code",
-      "Company Name": "Nama Kompeni"
+      "Company Name": "Nama Kompeni",
+      "registered": "Successfully Registered",
+      "success": "Success",
+      "updated": "Updated"
     },
+    "qrcodescreen": {
+      "type1": "Type 1",
+      "type2": "Type 2",
+      "type3": "Type 3"
+    },
+    "openscreen": {
+      "Display QRCode": "Paparkan QRCode",
+      "Fill Form": "Isi Form"
+    }
   },
-  "Register": "Register"
+  "Register": "Daftar"
 }

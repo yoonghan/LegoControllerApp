@@ -18,7 +18,6 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* LegoControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* LegoControllerTests.m */; };
-		338FB3A12423D53300FAF411 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 338FB3A02423D53300FAF411 /* GoogleService-Info.plist */; };
 		D2045575F792B1480228F7BA /* libPods-LegoController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44DA03E80CB3259D5B0C3948 /* libPods-LegoController.a */; };
 		ECB562C3A1C6216FEBBE9DC2 /* libPods-LegoControllerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE0E823091C84CFB38FC928 /* libPods-LegoControllerTests.a */; };
 /* End PBXBuildFile section */
@@ -57,7 +56,6 @@
 		2D02E4901E0B4A5D006451C7 /* LegoController-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LegoController-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31481845757EABD9D6C28C38 /* Pods-LegoController.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LegoController.debug.xcconfig"; path = "Target Support Files/Pods-LegoController/Pods-LegoController.debug.xcconfig"; sourceTree = "<group>"; };
 		328224D048617B206DC8D15F /* Pods-LegoController-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LegoController-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-LegoController-tvOSTests/Pods-LegoController-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		338FB3A02423D53300FAF411 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		338FB3E724243CCD00FAF411 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		44DA03E80CB3259D5B0C3948 /* libPods-LegoController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LegoController.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C9C46435ADE35F753CA8E7A /* Pods-LegoControllerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LegoControllerTests.release.xcconfig"; path = "Target Support Files/Pods-LegoControllerTests/Pods-LegoControllerTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -171,7 +169,6 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				338FB3A02423D53300FAF411 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* LegoController */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* LegoControllerTests */,
@@ -312,7 +309,12 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = JCK9UQCKWP;
+						ProvisioningStyle = Automatic;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -360,7 +362,6 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				338FB3A12423D53300FAF411 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -707,8 +708,11 @@
 			baseConfigurationReference = 31481845757EABD9D6C28C38 /* Pods-LegoController.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = JCK9UQCKWP;
 				INFOPLIST_FILE = LegoController/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -727,7 +731,10 @@
 			baseConfigurationReference = 9BA95D20D40050E33DA12660 /* Pods-LegoController.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JCK9UQCKWP;
 				INFOPLIST_FILE = LegoController/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -745,7 +752,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DB69E160F0BEEFA856A72BC7 /* Pods-LegoController-tvOS.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -773,7 +779,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FB12C6124B0A9E487591E175 /* Pods-LegoController-tvOS.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -879,6 +884,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -932,6 +938,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

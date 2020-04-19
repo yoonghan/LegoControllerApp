@@ -9,9 +9,43 @@ import { ApplicationSchema } from "../../../util/schemaValidator";
 import auth from '@react-native-firebase/auth';
 import { translate } from "../../../util/tools";
 import InputWithIcon from "../../../component/InputWithIcon";
+import * as QRRegistrationAction from "../../../redux/action/QRRegistrationAction";
 
-const Register: () => React$Node = ({translationState, registerCallback, cancelCallback}) => {
+const Register: () => React$Node = ({translationState, registerCallback, cancelCallback, qrState}) => {
   const [focusIdx, setFocusIdx] = React.useState(0);
+
+  const getInitialData = () => {
+    const {info} = qrState;
+    if(isNew()) {
+      return {
+        first_name: "",
+        last_name: "",
+        mobileno: "",
+        email: "",
+        address: "",
+        postal_code: "",
+        co_name: ""
+      }
+    }
+    else {
+      const infoInJson = JSON.parse(info);
+      const {first_name, last_name, mobileno, email, address, postal_code, co_name} = infoInJson;
+      return {
+        first_name: first_name,
+        last_name: last_name,
+        mobileno: mobileno,
+        email: email,
+        address: address,
+        postal_code: postal_code,
+        co_name: co_name
+      }
+    }
+  }
+
+  const isNew = () => {
+    const {info} = qrState;
+    return (Object.keys(info).length === 0 && info.constructor === Object);
+  }
 
   return (
     <View>
@@ -19,11 +53,11 @@ const Register: () => React$Node = ({translationState, registerCallback, cancelC
         <Formik
           validateOnChange={false}
           validateOnBlur={false}
-          initialValues={{ first_name: "", last_name: "", mobileno: "", email: "", address: "", postal_code: "", co_name: ""}}
+          initialValues={getInitialData()}
           validationSchema={ ApplicationSchema }
           onSubmit={(values, {setFieldValue}) => {
             setFocusIdx(0);
-            registerCallback(values.first_name, values.last_name, values.mobileno, values.email, values.address, values.postal_code, values.co_name);
+            registerCallback(isNew(), values.first_name, values.last_name, values.mobileno, values.email, values.address, values.postal_code, values.co_name);
           }}
           >
           {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
@@ -96,7 +130,6 @@ const Register: () => React$Node = ({translationState, registerCallback, cancelC
                 onBlur={()=>{setFocusIdx(0);handleBlur('address')}}
                 value={values.address}
                 errorMessage={errors.address}
-                secureTextEntry={true}
                 leftIcon="lock"
                 maxLength={400}
                 containerStyle={styles.gapContainer}
@@ -113,7 +146,6 @@ const Register: () => React$Node = ({translationState, registerCallback, cancelC
                 onBlur={()=>{setFocusIdx(0);handleBlur('postal_code')}}
                 value={values.postal_code}
                 errorMessage={errors.postal_code}
-                secureTextEntry={true}
                 leftIcon="lock"
                 maxLength={100}
                 containerStyle={styles.gapContainer}
@@ -130,7 +162,6 @@ const Register: () => React$Node = ({translationState, registerCallback, cancelC
                 onBlur={()=>{setFocusIdx(0);handleBlur('co_name')}}
                 value={values.co_name}
                 errorMessage={errors.co_name}
-                secureTextEntry={true}
                 leftIcon="lock"
                 maxLength={50}
                 containerStyle={styles.gapContainer}
@@ -186,5 +217,6 @@ const styles = StyleSheet.create({
 });
 
 export default compose(
-  connect(TranslationAction.mapStateToProps, TranslationAction.mapDispatchToProps)
+  connect(TranslationAction.mapStateToProps, TranslationAction.mapDispatchToProps),
+  connect(QRRegistrationAction.mapStateToProps, QRRegistrationAction.mapDispatchToProps)
 )(Register);

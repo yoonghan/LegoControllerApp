@@ -1,6 +1,7 @@
 {
   "Learn More": "Learn More",
   "Enter": "Enter",
+  "Update": "Update",
   "Getting Started": "Getting Started",
   "GettingStarted1": "This app is locked via phone biometric scans in order to develop a new secured application that works hand-in-hand with phone's \"Remember me\" function.",
   "GettingStarted2": "To start:",
@@ -67,7 +68,8 @@
       "Postal Code": "Postal Code",
       "Company Name": "Company Name",
       "registered": "Successfully Registered",
-      "success": "Success"
+      "success": "Success",
+      "updated": "Updated"
     },
     "qrcodescreen": {
       "type1": "Type 1",

@@ -13,17 +13,24 @@ const enumLoading = {
   ERROR: 2
 }
 
-const register = (setLoadingFunc, save, navigation) => async (first_name, last_name, mobileno, email, address, postal_code, co_name) => {
-  setLoadingFunc(enumLoading.REGISTERING);
-  await save(first_name, last_name, mobileno, email, address, postal_code, co_name);
-  setLoadingFunc(enumLoading.REGISTERED);
-  navigation.replace("InstructionFirstLogin");
-  // Alert.alert(
-  //   translate("unauthorized.applicationScreen.success"),
-  //   translate("unauthorized.applicationScreen.registered"),
-  //   [{ text: translate("OK")}],
-  //   {cancelable: false}
-  // );
+const register = (setLoadingFunc, save, navigation) =>
+  async (isNew, first_name, last_name, mobileno, email, address, postal_code, co_name) => {
+
+    setLoadingFunc(enumLoading.REGISTERING);
+    await save(first_name, last_name, mobileno, email, address, postal_code, co_name);
+    setLoadingFunc(enumLoading.REGISTERED);
+
+    if(isNew) {
+      navigation.replace("InstructionFirstLogin");
+    }
+    else {
+      Alert.alert(
+        translate("unauthorized.applicationScreen.success"),
+        translate("unauthorized.applicationScreen.registered"),
+        [{ text: translate("unauthorized.applicationScreen.updated")}],
+        {cancelable: false}
+      );
+    }
 }
 
 const cancelCallback = (navigation) => () => {

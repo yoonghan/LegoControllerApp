@@ -18,24 +18,24 @@ import { VERSION } from "../../util/const";
 import auth from '@react-native-firebase/auth';
 import BiometricAccess from "../../native/BiometricAccess";
 
-_buttonPressScanBiometric = (login, translationState) => async () => {
-  try {
-    const result = await BiometricAccess.showBiometricPrompt({
-      title: translationState.translate("Login_Bio_Title"),
-      subTitle: translationState.translate("Login_Bio_SubTitle"),
-      cancel: translationState.translate("Login_Bio_Cancel")
-    });
-    if(result && result.success) {
-      login(
-         "Anonymous",
-         "101001010101",
-      );
-    };
-  }
-  catch (e) {
-    console.warn(`Cancelled - ${e}`);
-  }
-}
+// _buttonPressScanBiometric = (login, translationState) => async () => {
+//   try {
+//     const result = await BiometricAccess.showBiometricPrompt({
+//       title: translationState.translate("Login_Bio_Title"),
+//       subTitle: translationState.translate("Login_Bio_SubTitle"),
+//       cancel: translationState.translate("Login_Bio_Cancel")
+//     });
+//     if(result && result.success) {
+//       login(
+//          "Anonymous",
+//          "101001010101",
+//       );
+//     };
+//   }
+//   catch (e) {
+//     console.warn(`Cancelled - ${e}`);
+//   }
+// }
 
 _buttonPressLogin = (navigation) => () => {
   navigation.navigate('ApplicationScreen');
@@ -78,14 +78,24 @@ const _renderLoginButton = (isLoggedIn, translationState, login, navigation, qrS
             title={translationState.translate("unauthorized.openscreen.Fill Form")}
             onPress={_buttonScanQRPressed(navigation)}
             />
+          <View
+            style={styles.btnTopSpacer}
+            />
+          <Button
+            title={translationState.translate("Update")}
+            onPress={_buttonPressLogin(navigation)}
+            />
         </View>
       );
   }
   else {
-    return <Button
-      title={translationState.translate("Enter")}
-      onPress={_buttonPressLogin(navigation)}
-      />
+    return (
+      <Button
+        style={styles.loginBtnContainer}
+        title={translationState.translate("Enter")}
+        onPress={_buttonPressLogin(navigation)}
+        />
+    )
   }
 }
 
@@ -168,10 +178,12 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     position: "absolute",
-    bottom: "40%",
+    bottom: "35%",
     width: "100%",
     padding: 1,
     backgroundColor: "#FFFFFF"
+  },
+  loginBtnContainer: {
   },
   learnmoreContainer: {
     position: "absolute",

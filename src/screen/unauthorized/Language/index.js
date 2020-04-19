@@ -21,7 +21,7 @@ const onPressAction = (translateChangeAction, languageCode) => () => {
 
 const renderIcon = (defaultLanguage, languageCode) => {
   if(defaultLanguage === languageCode) {
-    return { name: "check", color: '#55CC55', size: 20 }
+    return { name: "check", color: '#55CC55', size: 24 }
   }
 }
 
