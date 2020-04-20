@@ -22,20 +22,18 @@ const Register: () => React$Node = ({translationState, registerCallback, cancelC
         last_name: "",
         mobileno: "",
         email: "",
-        address: "",
         postal_code: "",
         co_name: ""
       }
     }
     else {
       const infoInJson = JSON.parse(info);
-      const {first_name, last_name, mobileno, email, address, postal_code, co_name} = infoInJson;
+      const {first_name, last_name, mobileno, email, postal_code, co_name} = infoInJson;
       return {
         first_name: first_name,
         last_name: last_name,
         mobileno: mobileno,
         email: email,
-        address: address,
         postal_code: postal_code,
         co_name: co_name
       }
@@ -57,7 +55,7 @@ const Register: () => React$Node = ({translationState, registerCallback, cancelC
           validationSchema={ ApplicationSchema }
           onSubmit={(values, {setFieldValue}) => {
             setFocusIdx(0);
-            registerCallback(isNew(), values.first_name, values.last_name, values.mobileno, values.email, values.address, values.postal_code, values.co_name);
+            registerCallback(isNew(), values.first_name, values.last_name, values.mobileno, values.email, values.postal_code, values.co_name);
           }}
           >
           {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
@@ -93,13 +91,13 @@ const Register: () => React$Node = ({translationState, registerCallback, cancelC
                 />
               <InputWithIcon
                 label={translationState.translate("unauthorized.applicationScreen.Mobile No")}
-                placeholder="+65 XXXXXXX"
+                placeholder="+65XXXXXXXXX"
                 onChangeText={handleChange('mobileno')}
                 onBlur={()=>{setFocusIdx(0);handleBlur('mobileno')}}
                 value={values.mobileno}
                 errorMessage={errors.mobileno}
                 leftIcon="phone"
-                maxLength={8}
+                maxLength={12}
                 keyboardType={"phone-pad"}
                 autoCompleteType={"tel"}
                 focus={focusIdx === 2}
@@ -124,22 +122,6 @@ const Register: () => React$Node = ({translationState, registerCallback, cancelC
                 blurOnSubmit={false}
                 />
               <InputWithIcon
-                label={translationState.translate("unauthorized.applicationScreen.Address")}
-                placeholder={translationState.translate("unauthorized.applicationScreen.Address")}
-                onChangeText={handleChange('address')}
-                onBlur={()=>{setFocusIdx(0);handleBlur('address')}}
-                value={values.address}
-                errorMessage={errors.address}
-                leftIcon="lock"
-                maxLength={400}
-                containerStyle={styles.gapContainer}
-                focus={focusIdx === 4}
-                autoCompleteType={'street-address'}
-                returnKeyType = { "next" }
-                onSubmitEditing={() => { setFocusIdx(5) }}
-                blurOnSubmit={false}
-                />
-              <InputWithIcon
                 label={translationState.translate("unauthorized.applicationScreen.Postal Code")}
                 placeholder={translationState.translate("unauthorized.applicationScreen.Postal Code")}
                 onChangeText={handleChange('postal_code')}
@@ -149,10 +131,10 @@ const Register: () => React$Node = ({translationState, registerCallback, cancelC
                 leftIcon="lock"
                 maxLength={100}
                 containerStyle={styles.gapContainer}
-                focus={focusIdx === 5}
+                focus={focusIdx === 4}
                 autoCompleteType={'postal-code'}
                 returnKeyType = { "next" }
-                onSubmitEditing={() => { setFocusIdx(6) }}
+                onSubmitEditing={() => { setFocusIdx(5) }}
                 blurOnSubmit={false}
                 />
               <InputWithIcon
@@ -165,9 +147,9 @@ const Register: () => React$Node = ({translationState, registerCallback, cancelC
                 leftIcon="lock"
                 maxLength={50}
                 containerStyle={styles.gapContainer}
-                focus={focusIdx === 6}
+                focus={focusIdx === 5}
                 returnKeyType = { "next" }
-                onSubmitEditing={() => { setFocusIdx(7) }}
+                onSubmitEditing={() => { setFocusIdx(6) }}
                 blurOnSubmit={true}
                 />
               <Button

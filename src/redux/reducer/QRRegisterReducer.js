@@ -12,9 +12,9 @@ export type QRRegisterType = {
   last_name: string,
   mobileno: string,
   email: string,
-  address: string,
   postal_code: string,
-  co_name: string
+  co_name: string,
+  gen_date: string
 }
 
 export type QRRegistrationType = {

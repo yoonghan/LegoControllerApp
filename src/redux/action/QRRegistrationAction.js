@@ -5,6 +5,7 @@ import * as ActionTypes from "./ActionTypes";
 import AsyncStorage from '@react-native-community/async-storage';
 import type { QRRegistrationType, QRRegisterType } from "../reducer/LoginReducer";
 import type { ReducerStateType } from "../reducer";
+import moment from 'moment';
 
 export type QRRegistrationStateType = {
   qrState: QRRegistrationType
@@ -25,8 +26,11 @@ export const load = ({
 });
 
 export const mapDispatchToProps = (dispatch: any):QRRegistrationActionType => ({
-  save: (first_name: string, last_name: string, mobileno: string, email: string, address: string, postal_code: string, co_name) => {
-    dispatch(save({first_name, last_name, mobileno, email, address, postal_code, co_name}))
+  save: (first_name: string, last_name: string, mobileno: string, email: string, postal_code: string, co_name: string) => {
+    const gen_date = moment()
+       .utcOffset('+08:00')
+       .format('YYYY-MM-DD hh:mm:ss a');
+    dispatch(save({first_name, last_name, mobileno, email, postal_code, co_name, gen_date}))
   },
   qrInfoLoad: () => {
     dispatch(load)

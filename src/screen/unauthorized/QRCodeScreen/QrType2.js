@@ -6,16 +6,24 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 import QRCode from 'react-native-qrcode-svg';
 import * as QRRegistrationAction from "../../../redux/action/QRRegistrationAction";
+import moment from 'moment';
 
 const QrType2 = ({qrState}) => {
   const {info} = qrState;
   const infoInJson = JSON.parse(info);
-  const {first_name, last_name, mobileno} = infoInJson;
-  const result = JSON.stringify({first_name, last_name, mobileno});
+  const {first_name, last_name, mobileno, gen_date} = infoInJson;
+  const result = JSON.stringify({
+    first_name, last_name, mobileno,
+    gen_date,
+    scan_date: moment()
+        .utcOffset('+08:00')
+        .format('YYYY-MM-DD hh:mm:ss a')}
+    );
   return (
     <View style={styles.container}>
       <View style={styles.qrcontainer}>
-        <Text>*{result}*</Text>
+        <Text>{result}</Text>
+        <Text>--------</Text>
         <QRCode
           value={result}
           size={300}

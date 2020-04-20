@@ -26,11 +26,15 @@ export const ForgotPasswordSchema = Yup.object().shape({
     .required(translate("Required"))
 });
 
+const phoneRegExp = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/
+
 export const ApplicationSchema = Yup.object().shape({
-  first_name: Yup.string(),
-  last_name: Yup.string(),
-  mobileno: Yup.number(),
-  address: Yup.string(),
+  first_name: Yup.string()
+    .required(translate("Required")),
+  last_name: Yup.string()
+    .required(translate("Required")),
+  mobileno: Yup.string()
+    .matches(phoneRegExp, 'Phone number is not valid'),
   postal_code: Yup.number(),
   company_name: Yup.string(),
   email: Yup.string()

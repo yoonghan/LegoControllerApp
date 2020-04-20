@@ -14,10 +14,10 @@ const enumLoading = {
 }
 
 const register = (setLoadingFunc, save, navigation) =>
-  async (isNew, first_name, last_name, mobileno, email, address, postal_code, co_name) => {
+  async (isNew, first_name, last_name, mobileno, email, postal_code, co_name) => {
 
     setLoadingFunc(enumLoading.REGISTERING);
-    await save(first_name, last_name, mobileno, email, address, postal_code, co_name);
+    await save(first_name, last_name, mobileno, email, postal_code, co_name);
     setLoadingFunc(enumLoading.REGISTERED);
 
     if(isNew) {

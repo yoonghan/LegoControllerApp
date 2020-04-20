@@ -12,10 +12,10 @@ const ScanQRScreen = ({qrState}) => {
   const buildInfo = () => {
     const {info} = qrState;
     const infoInJson = JSON.parse(info);
-    const {first_name, last_name, mobileno} = infoInJson;
-    const eName = encodeURI((first_name||"") + (last_name||""));
+    const {first_name, last_name, mobileno, email, postal_code} = infoInJson;
+    const eName = encodeURI((first_name||"") + "%20" +(last_name||""));
     const eMobileNo = encodeURI(mobileno);
-    return `?name=${eName}&mobile_no=${eMobileNo}`;
+    return `?name=${eName}&mobile_no=${eMobileNo}&address=${postal_code}&usp=pp_url&entry.2005620554=${eName}&entry.1045781291=${email}&entry.1065046570=${mobileno}&entry.1166974658=${postal_code}`;
   }
 
   const onSuccess = e => {
